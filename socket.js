@@ -3,9 +3,11 @@
 let curr_io;
 let sockets = [];
 module.exports.sendMsgClient = data => {
-    sockets.map(socket => {
-        io.sockets.socket(socket).emit({ data });
-    })
+    if(curr_io)
+    curr_io.sockets.emit('data',{ data });
+    //  sockets.map(socket => {
+    //    curr_io.sockets[socket].emit('data',{ data });
+    //  })
 }
 
 

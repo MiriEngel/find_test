@@ -8,6 +8,11 @@ const options = {
     'device_adapter'        : require('./GT06N')
 }
 
+//test:
+// setTimeout(() => {
+//   sendMsgClient({data:'testttttttttttttt'});  
+// }, 30000);
+
 sendMsgClient({data:'testttttttttttttt'});
 //protocol:gt06	 port:5023
 var server = gps.server(options,function(device,connection){
