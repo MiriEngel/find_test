@@ -1,6 +1,19 @@
 
-//const simulatation = require('./controllers/simulatCoordinates');
-const coords = [{ lat: 32.087992, lng: 34.789774 },
+
+let curr_io;
+let sockets = [];
+module.exports.sendMsgClient = data => {
+    sockets.map(socket => {
+        io.sockets.socket(socket).emit({ data });
+    })
+}
+
+
+module.exports.start = io => {
+    curr_io = io;
+
+    //const simulatation = require('./controllers/simulatCoordinates');
+    const coords = [{ lat: 32.087992, lng: 34.789774 },
     { lat: 32.087914, lng: 34.789396 },
     { lat: 32.087668, lng: 34.788795 },
     { lat: 32.087185, lng: 34.788460 },
@@ -13,27 +26,28 @@ const coords = [{ lat: 32.087992, lng: 34.789774 },
     { lat: 32.087693, lng: 34.790782 },
     { lat: 32.087938, lng: 34.790127 }
     ]
-    
-module.exports = (io) => {
+
+ 
     io.on('connection', (socket) => {
+        sockets.push(socket.id);
         // console.log('Client connected...');
         socket.emit('news', { hello: 'world' });
-        let i=0;
+        let i = 0;
         setInterval(() => {
-            if(i== coords.length) i=0;
-            socket.emit( 'position', coords[i++])
-        },  1000);
+            if (i == coords.length) i = 0;
+            socket.emit('position', coords[i++])
+        }, 1000);
 
-            // coords.map(points=>{
+        // coords.map(points=>{
 
-            //     setTimeout(() => {
-                   
-            //         socket.emit('position', points);
-            //     }, 10000);
-              
-            // })
-      
-        
+        //     setTimeout(() => {
+
+        //         socket.emit('position', points);
+        //     }, 10000);
+
+        // })
+
+
         socket.on('join', (data) => {
             console.log(data);
         });

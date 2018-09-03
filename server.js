@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const ctrl = require('./controller/tracking')
 
 //const jwt = require('_helpers/jwt');
 const errorHandler = require('_helpers/error-handler');
@@ -29,7 +30,7 @@ const port = process.env.PORT || 3000;
 const server = app.listen(port, () => console.log(`app listening on port ${port}!`))
 const io = require('socket.io').listen(server);
 
-require('./socket')(io);
+require('./socket').start(io);
 
 
 

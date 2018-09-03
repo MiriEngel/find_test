@@ -10,7 +10,7 @@
     var map;
     var marker;
     var pos = { lat: 32.086397, lng: 34.788485 }
-    let socket = io.connect('http://localhost:4000');
+    let socket = io.connect('http://localhost:3000');
     socket.on('news', function (data) {
       console.log(data);
       socket.emit('my other event', { my: 'data' });
@@ -20,6 +20,12 @@
       console.log(data);
       var latlng = new google.maps.LatLng(data.lat, data.lng)//Object.values(data));
       marker.setPosition(latlng);
+
+    });
+
+    socket.on('data', function (data) {
+      console.log(data)
+     alert('dattt in console');
 
     });
 
