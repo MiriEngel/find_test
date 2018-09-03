@@ -53,7 +53,7 @@ var server = gps.server(options,function(device,connection){
     connection.on('data',function(data){
         console.log('omgg!!')
         //echo raw data package
-        sendMsgClient(data);
+        sendMsgClient({data:data});
         console.log(data.toString()); 
     })
 
