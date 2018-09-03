@@ -35,9 +35,13 @@ module.exports.start = io => {
         // console.log('Client connected...');
         socket.emit('news', { hello: 'world' });
         let i = 0;
+        let j =0
         setInterval(() => {
+            j++;
+            if(j<100){
             if (i == coords.length) i = 0;
             socket.emit('position', coords[i++])
+            }
         }, 1000);
 
         // coords.map(points=>{
