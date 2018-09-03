@@ -12,10 +12,10 @@ const options = {
 // setTimeout(() => {
 //   sendMsgClient({data:'testttttttttttttt'});  
 // }, 30000);
-(() =>{
-let data = '78780d010353701091381687001689040d0a';
-          //  787805010001d9dc0d0a
-})()
+// (() =>{
+// let data = '78780d010353701091381687001689040d0a';
+//           //  787805010001d9dc0d0a
+// })()
 sendMsgClient({data:'testttttttttttttt'});
 //protocol:gt06	 port:5023
 var server = gps.server(options,function(device,connection){
