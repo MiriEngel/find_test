@@ -46,8 +46,9 @@ var server = gps.server(options,function(device,connection){
 
     //Also, you can listen on the native connection object
     connection.on('data',function(data){
+        console.log('omgg!!')
         //echo raw data package
-        socket1.sendMsgClient(data);
+        sendMsgClient(data);
         console.log(data.toString()); 
     })
 
