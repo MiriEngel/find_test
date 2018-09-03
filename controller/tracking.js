@@ -5,7 +5,7 @@ let {sendMsgClient} = require('../socket');
 const options = {
     'debug'                 : false, //We don't want to debug info automatically. We are going to log everything manually so you can check what happens everywhere
     'port'                  : 5023,
-    'device_adapter'        : "GT06N"
+    'device_adapter'        : require('./GT06N')
 }
 
 sendMsgClient({data:'testttttttttttttt'});
