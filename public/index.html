@@ -9,6 +9,7 @@
   <script>
     var map;
     var marker;
+  
     var pos = { lat: 32.086397, lng: 34.788485 }
     let socket = io.connect('http://18.223.179.147:3000');
     socket.on('news', function (data) {
@@ -25,6 +26,16 @@
 
     socket.on('data', function (data) {
       console.log(data)
+      try{
+      if(data.data.data.latitude){
+        var latlng = new google.maps.LatLng(data.data.data.latitude, data.data.data.longitude)//Object.values(data));
+      marker.setPosition(latlng);
+      map.setCenter(latlng);
+      }
+    }catch(err){}
+
+
+      if(_.get(data,'data.data.latitude_raw'))
      alert('dattt in console');
 
     });
@@ -43,6 +54,8 @@
       });
     }
   </script>
+  <script src="https://raw.githubusercontent.com/lodash/lodash/4.17.10-npm/core.js"></script>
+
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDm3MIEQgeB21x6llnIX-76fvpxC3eqw0Q&callback=initMap" async
     defer></script>
 </body>
