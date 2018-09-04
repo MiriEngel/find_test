@@ -10,7 +10,7 @@
     var map;
     var marker;
     var pos = { lat: 32.086397, lng: 34.788485 }
-    let socket = io.connect('http://localhost:3000');
+    let socket = io.connect('http://18.223.179.147:3000');
     socket.on('news', function (data) {
       console.log(data);
       socket.emit('my other event', { my: 'data' });
