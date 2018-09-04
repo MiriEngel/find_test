@@ -3,8 +3,10 @@
 let curr_io;
 let sockets = [];
 module.exports.sendMsgClient = data => {
-    if(curr_io)
+    if(curr_io){
+        console.log('blaaaa');
     curr_io.sockets.emit('data',{ data });
+    }
     //  sockets.map(socket => {
     //    curr_io.sockets[socket].emit('data',{ data });
     //  })
