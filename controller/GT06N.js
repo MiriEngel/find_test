@@ -23,9 +23,7 @@ var adapter = function (device) {
    *******************************************/
   this.parse_data = function (data) {
     data = data.toString('hex');
-    console.log('dattattatt11111111111:')
-    console.log(data);
-    var parts = {
+     var parts = {
       'start': data.substr(0, 4)
     };
 
