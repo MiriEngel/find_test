@@ -44,7 +44,8 @@ var server = gps.server(options, function (device, connection) {
 
         //Look what informations the device sends to you (maybe velocity, gas level, etc)
         //console.log(data);
-        return data;
+        sendMsgClient({ data });
+        //return data;
 
     });
 
