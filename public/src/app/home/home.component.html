@@ -1,14 +1,15 @@
 ﻿
-<h1>{{ title }}</h1>
+
 
 <h1>Hi {{currentUser.firstName}}!</h1>
 
-<agm-map [latitude]="lat" [longitude]="lng">
+<agm-map  [zoom]="12" [latitude]="lat" [longitude]="lng">
   <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
 </agm-map>
 <style>
     agm-map {
-    height: 300px;
+    height: 600px;
+    width: 600px;
 }
 </style>
 
