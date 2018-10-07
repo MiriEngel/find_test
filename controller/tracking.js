@@ -9,9 +9,9 @@ const options = {
 }
 
 
-setInterval(() => {
-    sendMsgClient({data:'testttttttttttttt'}); 
-}, 10000);
+// setInterval(() => {
+//     sendMsgClient({data:'testttttttttttttt'}); 
+// }, 10000);
 
 
 // (() =>{
