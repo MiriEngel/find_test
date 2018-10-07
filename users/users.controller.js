@@ -2,11 +2,11 @@
 const router = express.Router();
 const userService = require('./user.service');
 
-//Passport middleware module and setup
-const passport = require('passport');
-const passportStrategies = require('../services/passpaort.strategies');
-const requireAuth = passport.authenticate('jwt', { session: false });
-const requireSignin = passport.authenticate('local', { session: false });
+// //Passport middleware module and setup
+// const passport = require('passport');
+// const passportStrategies = require('../services/passpaort.strategies');
+// const requireAuth = passport.authenticate('jwt', { session: false });
+// const requireSignin = passport.authenticate('local', { session: false });
 
 // //Custom express routing middleware that checks to see if the authenticated user is an admin
 // module.exports = function (req, res, next) {

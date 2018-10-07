@@ -13,8 +13,8 @@ module.exports = {
     delete: _delete
 };
 
-async function authenticate({ username, password }) {
-    const user = await User.findOne({ username });
+async function authenticate({ imei, password }) {
+    const user = await User.findOne({ imei });
     if (user && bcrypt.compareSync(password, user.hash)) {
         const userWithoutHash = []
         //const { hash, ...userWithoutHash } = user.toObject();
@@ -34,8 +34,8 @@ async function getById(id) {
 
 async function create(userParam) {
     // validate
-    if (await User.findOne({ username: userParam.username })) {
-        throw 'Username "' + userParam.username + '" is already taken';
+    if (await User.findOne({ imei: userParam.imei })) {
+        throw 'imei "' + userParam.imei + '" is already taken';
     }
 
     const user = new User(userParam);
@@ -54,8 +54,8 @@ async function update(id, userParam) {
 
     // validate
     if (!user) throw 'User not found';
-    if (user.username !== userParam.username && await User.findOne({ username: userParam.username })) {
-        throw 'Username "' + userParam.username + '" is already taken';
+    if (user.imei !== userParam.imei && await User.findOne({ imei: userParam.imei })) {
+        throw 'imei "' + userParam.imei + '" is already taken';
     }
 
     // hash password if it was entered

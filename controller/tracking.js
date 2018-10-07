@@ -8,10 +8,12 @@ const options = {
     'device_adapter': require('./GT06N')
 }
 
-//test:
-// setTimeout(() => {
-//   sendMsgClient({data:'testttttttttttttt'});  
-// }, 30000);
+
+setInterval(() => {
+    sendMsgClient({data:'testttttttttttttt'}); 
+}, 10000);
+
+
 // (() =>{
 // let data = '78780d010353701091381687001689040d0a';
 //           //  787805010001d9dc0d0a
@@ -55,7 +57,7 @@ var server = gps.server(options, function (device, connection) {
 
     //Also, you can listen on the native connection object
     connection.on('data', function (data) {
-        console.log('omgg!!')
+        //console.log('omgg!!')
         //echo raw data package
         sendMsgClient({ data: data });
         console.log(data.toString());

@@ -5,21 +5,21 @@
     "version": "0.2.0",
     "configurations": [
         {
-            // "type": "node",
-            // "request": "launch",
-            // "name": "Launch Program",
-            // "program": "${workspaceFolder}/server.js"
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Program",
+            "program": "${workspaceFolder}/server.js"
 
             
-                "type": "node",
-                "request": "launch",
-                "address": "18.223.179.147",
-                "port": "9229",
-                "localRoot": "${workspaceFolder}",
-                "remoteRoot": "/home/ec2-user/findMe/find_test",
-                "name": "Launch in WSL",
-                "useWSL": true,
-                "program": "${workspaceFolder}/server.js"
+                // // "type": "node",
+                // // "request": "launch",
+                // // "address": "18.223.179.147",
+                // // "port": "9229",
+                // // "localRoot": "${workspaceFolder}",
+                // // "remoteRoot": "/home/ec2-user/findMe/find_test",
+                // // "name": "Launch in WSL",
+                // // "useWSL": true,
+                // // "program": "${workspaceFolder}/server.js"
             
         }
     ]
