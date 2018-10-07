@@ -20,6 +20,7 @@ import { RegisterComponent } from './register';
 import { AgmCoreModule } from '@agm/core';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
+alert(window.location.hostname);
 const config: SocketIoConfig = { url: 'http://'+window.location.hostname+':4000', options: {} };
 
 @NgModule({
