@@ -810,7 +810,8 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
-var config = { url: 'http://localhost:4000', options: {} };
+alert(window.location.hostname);
+var config = { url: 'http://' + window.location.hostname + ':4000', options: {} };
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -1287,7 +1288,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Projects\move_protect\client\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Projects\move_protect\public\src\main.ts */"./src/main.ts");
 
 
 /***/ }),

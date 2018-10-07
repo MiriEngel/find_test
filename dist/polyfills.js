@@ -5474,7 +5474,7 @@ window.global = window;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Projects\move_protect\client\src\polyfills.ts */"./src/polyfills.ts");
+module.exports = __webpack_require__(/*! C:\Projects\move_protect\public\src\polyfills.ts */"./src/polyfills.ts");
 
 
 /***/ })
