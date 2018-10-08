@@ -35,8 +35,8 @@ export class HomeComponent implements OnInit {
 
             console.log("Response from websocket: " + msg);
             if (msg.data.data.latitude) {
-                this.lat = msg.data.data.latitude;
-                this.lng = msg.data.data.longitude;
+                this.lat = msg.data.latitude;
+                this.lng = msg.data.longitude;
             }
         });
     }

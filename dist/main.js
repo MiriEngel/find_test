@@ -960,8 +960,8 @@ var HomeComponent = /** @class */ (function () {
         chatService.getMessage().subscribe(function (msg) {
             console.log("Response from websocket: " + msg);
             if (msg.data.data.latitude) {
-                _this.lat = msg.data.data.latitude;
-                _this.lng = msg.data.data.longitude;
+                _this.lat = msg.data.latitude;
+                _this.lng = msg.data.longitude;
             }
         });
     }
