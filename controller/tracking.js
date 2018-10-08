@@ -41,6 +41,7 @@ var server = gps.server(options, function (device, connection) {
 
 
     device.on("ping", function (data) {
+        console.log('device details: '+device);
         //this = device
         console.log("I'm here: " + data.latitude + ", " + data.longitude + " (" + this.getUID() + ")");
 
