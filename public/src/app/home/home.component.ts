@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
         chatService.getMessage().subscribe(msg => {
 
             console.log("Response from websocket: " + msg);
-            if (msg.data.data.latitude) {
+            if (msg.data.latitude) {
                 this.lat = msg.data.latitude;
                 this.lng = msg.data.longitude;
             }

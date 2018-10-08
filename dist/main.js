@@ -959,7 +959,7 @@ var HomeComponent = /** @class */ (function () {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         chatService.getMessage().subscribe(function (msg) {
             console.log("Response from websocket: " + msg);
-            if (msg.data.data.latitude) {
+            if (msg.data.latitude) {
                 _this.lat = msg.data.latitude;
                 _this.lng = msg.data.longitude;
             }
