@@ -818,10 +818,13 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
-var user = JSON.parse(localStorage.getItem('currentUser'));
 var config;
-if (user && 'token' in user)
-    config = { url: 'http://' + window.location.hostname + ':4000', options: { query: "token=" + user.token + '&iemi=' + JSON.parse(user).imei } };
+var user = localStorage.getItem('currentUser');
+if (user) {
+    user = JSON.parse(user);
+    if ('token' in user)
+        config = { url: 'http://' + window.location.hostname + ':4000', options: { query: "token=" + user.token + '&iemi=' + user.imei } };
+}
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }

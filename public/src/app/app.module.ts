@@ -20,11 +20,14 @@ import { RegisterComponent } from './register';
 import { AgmCoreModule } from '@agm/core';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
-let user = <any>JSON.parse(localStorage.getItem('currentUser'));
-
 let config: SocketIoConfig;
-if (user && 'token' in user)
-    config = { url: 'http://' + window.location.hostname + ':4000', options: { query: "token=" + user.token + '&iemi=' + JSON.parse(user).imei } };
+let user = <any>localStorage.getItem('currentUser');
+if (user) {
+    user = JSON.parse(user);
+
+    if ('token' in user)
+        config = { url: 'http://' + window.location.hostname + ':4000', options: { query: "token=" + user.token + '&iemi=' + user.imei } };
+}
 
 @NgModule({
     imports: [
