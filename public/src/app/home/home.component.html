@@ -3,6 +3,15 @@
 
 <h1>Hi {{currentUser.firstName}}!</h1>
 
+
+<div>
+    Users from secure api end point:
+    <ul>
+        <li *ngFor="let user of users">{{user.firstName}} {{user.lastName}}</li>
+    </ul>
+</div>
+<p><a [routerLink]="['/login']">Logout</a></p>
+
 <agm-map  [zoom]="12" [latitude]="lat" [longitude]="lng">
   <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
 </agm-map>

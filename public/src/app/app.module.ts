@@ -1,13 +1,13 @@
-﻿import { NgModule }      from '@angular/core';
+﻿import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule }    from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // used to create fake backend
 //import { fakeBackendProvider } from './_helpers';
 
-import { AppComponent }  from './app.component';
-import { routing }        from './app.routing';
+import { AppComponent } from './app.component';
+import { routing } from './app.routing';
 
 import { AlertComponent } from './_directives';
 import { AuthGuard } from './_guards';
@@ -20,7 +20,9 @@ import { RegisterComponent } from './register';
 import { AgmCoreModule } from '@agm/core';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
-const config: SocketIoConfig = { url: 'http://'+window.location.hostname+':4000', options: {} };
+let user = <any>localStorage.getItem('currentUser');
+
+const config: SocketIoConfig = { url: 'http://' + window.location.hostname + ':4000', options: { query: "token=" + JSON.parse(user).token + '&iemi='+JSON.parse(user).imei } };
 
 @NgModule({
     imports: [
@@ -31,8 +33,8 @@ const config: SocketIoConfig = { url: 'http://'+window.location.hostname+':4000'
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyDm3MIEQgeB21x6llnIX-76fvpxC3eqw0Q',
             libraries: ['places']
-          }),
-          SocketIoModule.forRoot(config) 
+        }),
+        SocketIoModule.forRoot(config)
     ],
     declarations: [
         AppComponent,

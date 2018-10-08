@@ -47,7 +47,7 @@ var server = gps.server(options, function (device, connection) {
 
         //Look what informations the device sends to you (maybe velocity, gas level, etc)
         //console.log(data);
-        sendMsgClient({ data });
+        sendMsgClient({ ...data,imei: this.getUID()},this.getUID());
         return data;
 
     });
