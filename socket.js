@@ -33,7 +33,7 @@ module.exports.start = io => {
     }
 
     io.on('connection', socket => {
-        let imei = socket.handshake.query.imei;
+        let imei = socket.handshake.query.iemi;
         if (!sockets[imei])
             sockets[imei] = []
 
