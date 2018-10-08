@@ -1255,7 +1255,7 @@ __webpack_require__.r(__webpack_exports__);
 // The list of file replacements can be found in `angular.json`.
 var environment = {
     production: false,
-    apiUrl: 'http://localhost:4000'
+    apiUrl: 'http://' + window.location.hostname + ':4000' //'http://localhost:4000'//http://18.223.179.147:4000
 };
 /*
  * In development mode, to ignore zone related error stack frames such as
