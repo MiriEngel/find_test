@@ -14,7 +14,8 @@ module.exports.sendMsgClient = (data, imei) => {
         // }
         if (sockets[imei] && sockets[imei].length) {
             sockets[imei].map(socket => {
-                curr_io.sockets.socket(socket).emit('data', { data });
+                curr_io.to(socket).emit('data', { data });
+                //curr_io.sockets.socket(socket).emit('data', { data });
                // io.sockets.socket(socketId).emit(msg);
             })
         }
