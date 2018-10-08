@@ -23,7 +23,7 @@ import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 let user = <any>JSON.parse(localStorage.getItem('currentUser'));
 
 let config: SocketIoConfig;
-if ('token' in user)
+if (user && 'token' in user)
     config = { url: 'http://' + window.location.hostname + ':4000', options: { query: "token=" + user.token + '&iemi=' + JSON.parse(user).imei } };
 
 @NgModule({
