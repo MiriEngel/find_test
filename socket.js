@@ -6,15 +6,17 @@ let sockets = [];
 
 //0353701091381687
 module.exports.sendMsgClient = (data, imei) => {
-    imei= imei|| data.imei;
+    imei = imei || data.imei;
     if (imei) {
         console.log('imei======================:', imei);
         console.log('sockets======================:', sockets[imei]);
         //     curr_io.sockets.emit('data', { data });
         // }
-        sockets[imei].map(socket => {
-            curr_io.sockets[socket].emit('data', { data });
-        })
+        if (sockets[imei] && sockets[imei].length) {
+            sockets[imei].map(socket => {
+                curr_io.sockets[socket].emit('data', { data });
+            })
+        }
     }
 }
 
