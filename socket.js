@@ -6,6 +6,7 @@ let sockets = [];
 
 //0353701091381687
 module.exports.sendMsgClient = (data, imei) => {
+    imei= imei|| data.imei;
     if (imei) {
         console.log('imei======================:', imei);
         console.log('sockets======================:', sockets[imei]);
