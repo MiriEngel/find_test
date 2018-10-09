@@ -1,27 +1,18 @@
-
 var socketioJwt = require('socketio-jwt');
 let curr_io;
 //move to redis
-let sockets = [];
+let sockets = {};
 
 //0353701091381687
-module.exports.sendMsgClient = (data, imei) => {
-    imei = imei || data.imei;
-    if (imei) {
-        console.log('imei======================:', imei);
-        console.log('sockets======================:', sockets[imei]);
-        //     curr_io.sockets.emit('data', { data });
-        // }
-        if (sockets[imei] && sockets[imei].length) {
-            sockets[imei].map(socket => {
-                curr_io.to(socket).emit('data', { data });
-                //curr_io.sockets.socket(socket).emit('data', { data });
-               // io.sockets.socket(socketId).emit(msg);
-            })
-        }
+module.exports.sendMsgClient = (data) => {
+    let imei = data.imei;
+    if (imei && sockets[imei] && sockets[imei].length) {
+        sockets[imei].map(s => {
+            curr_io.to(s).emit('data', { data });
+            // io.sockets.socket(socketId).emit(msg);
+        })
     }
 }
-
 
 module.exports.start = io => {
     curr_io = io;
@@ -41,18 +32,11 @@ module.exports.start = io => {
 
         sockets[imei].push(socket.id);
 
-        // socket.emit('news', { hello: 'world' });
-        // socket.on('join', (data) => {
-        //     console.log(data);
-        // });
+        module.exports.sendMsgClient({imei,data:{'test':'welcome!!'}});
 
-        // socket.on('messages', (data) => {
-        //     alert(data);
-        // });
-
+        socket.on('disconnect', () => {
+            sockets[imei].splice(sockets[imei].indexOf(socket.id), 1);
+            console.log(`user socket: ${socket.id} imei:${imei} disconnected`)
+        });
     })
-    // .on('authenticated', function (socket) {
-    //     //this socket is authenticated, we are good to handle more events from it.
-    //     console.log('hello! ' + socket.decoded_token.name);
-    // });
 }

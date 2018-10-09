@@ -573,78 +573,6 @@ var AuthenticationService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/_services/chat.ts":
-/*!***********************************!*\
-  !*** ./src/app/_services/chat.ts ***!
-  \***********************************/
-/*! exports provided: ChatService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatService", function() { return ChatService; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var ngx_socket_io__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ngx-socket-io */ "./node_modules/ngx-socket-io/index.js");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var ChatService = /** @class */ (function () {
-    function ChatService(socket) {
-        this.socket = socket;
-    }
-    ChatService.prototype.sendMessage = function (msg) {
-        this.socket.emit("data", msg);
-    };
-    ChatService.prototype.getMessage = function () {
-        return this.socket
-            .fromEvent("data")
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (data) { return data; }));
-    };
-    ChatService = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
-        __metadata("design:paramtypes", [ngx_socket_io__WEBPACK_IMPORTED_MODULE_1__["Socket"]])
-    ], ChatService);
-    return ChatService;
-}());
-
-// import { Injectable } from '@angular/core';
-// import { Observable, Subject } from 'rxjs';
-// import { map } from 'rxjs/operators';
-// import { WebsocketService } from './websocket';
-// const CHAT_URL = 'ws://localhost:4000';
-// export interface Message {
-// 	author: string,
-// 	message: string
-// }
-// @Injectable()
-// export class ChatService {
-// 	public messages: Subject<Message>;
-// 	constructor(wsService: WebsocketService) {
-// 		this.messages = <Subject<Message>>wsService
-// 			.connect(CHAT_URL)
-// 			.pipe(map((response: MessageEvent): Message => {
-// 				let data = JSON.parse(response.data);
-// 				return {
-// 					author: data.author,
-// 					message: data.message
-// 				}
-// 			}));
-// 	}
-// }
-
-
-/***/ }),
-
 /***/ "./src/app/_services/index.ts":
 /*!************************************!*\
   !*** ./src/app/_services/index.ts ***!
@@ -794,7 +722,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _login__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./login */ "./src/app/login/index.ts");
 /* harmony import */ var _register__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./register */ "./src/app/register/index.ts");
 /* harmony import */ var _agm_core__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @agm/core */ "./node_modules/@agm/core/index.js");
-/* harmony import */ var ngx_socket_io__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ngx-socket-io */ "./node_modules/ngx-socket-io/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -817,14 +744,14 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
-
-var config;
-var user = localStorage.getItem('currentUser');
-if (user) {
-    user = JSON.parse(user);
-    if ('token' in user)
-        config = { url: 'http://' + window.location.hostname + ':4000', options: { query: "token=" + user.token + '&iemi=' + user.imei } };
-}
+//import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+//let config: SocketIoConfig;
+// let user = <any>localStorage.getItem('currentUser');
+// if (user) {
+//     user = JSON.parse(user);
+//     if ('token' in user)
+//         config = { url: 'http://' + window.location.hostname + ':4000', options: { query: "token=" + user.token + '&iemi=' + user.imei } };
+// }
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -839,7 +766,6 @@ var AppModule = /** @class */ (function () {
                     apiKey: 'AIzaSyDm3MIEQgeB21x6llnIX-76fvpxC3eqw0Q',
                     libraries: ['places']
                 }),
-                ngx_socket_io__WEBPACK_IMPORTED_MODULE_14__["SocketIoModule"].forRoot(config)
             ],
             declarations: [
                 _app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"],
@@ -923,7 +849,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 /* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../_services */ "./src/app/_services/index.ts");
-/* harmony import */ var _services_chat__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../_services/chat */ "./src/app/_services/chat.ts");
+/* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! socket.io-client */ "./node_modules/socket.io-client/lib/index.js");
+/* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(socket_io_client__WEBPACK_IMPORTED_MODULE_3__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -936,6 +863,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+//import { ChatService } from '../_services/chat';
 
 var Message = /** @class */ (function () {
     function Message(sender, content, isBroadcast) {
@@ -948,25 +876,42 @@ var Message = /** @class */ (function () {
 }());
 
 var HomeComponent = /** @class */ (function () {
-    function HomeComponent(userService, chatService) {
-        var _this = this;
+    function HomeComponent(userService) {
         this.userService = userService;
-        this.chatService = chatService;
         this.title = 'My first AGM project';
         this.lat = 43.678418;
         this.lng = -79.809007;
         this.users = [];
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        chatService.getMessage().subscribe(function (msg) {
-            console.log("Response from websocket: " + msg);
+        var user = localStorage.getItem('currentUser');
+        if (user) {
+            user = JSON.parse(user);
+            if ('token' in user)
+                this.socket = socket_io_client__WEBPACK_IMPORTED_MODULE_3__["connect"]("http://" + window.location.hostname + ":4000?token=" + user.token + "&iemi=" + user.imei);
+            //  config = { url: 'http://' + window.location.hostname + ':4000', options: { query: "token=" + user.token + '&iemi=' + user.imei } };
+        }
+        // chatService.getMessage().subscribe(msg => {
+        //     console.log("Response from websocket: ", msg);
+        //     if (msg.data.latitude) {
+        //         this.lat = msg.data.latitude;
+        //         this.lng = msg.data.longitude;
+        //     }
+        // });
+    }
+    HomeComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.loadAllUsers();
+        this.socket.emit('init');
+        this.socket.on('message', function (data) {
+            console.log(data.msg);
+        });
+        this.socket.on('data', function (msg) {
+            console.log("Response from websocket: ", msg);
             if (msg.data.latitude) {
                 _this.lat = msg.data.latitude;
                 _this.lng = msg.data.longitude;
             }
         });
-    }
-    HomeComponent.prototype.ngOnInit = function () {
-        this.loadAllUsers();
     };
     HomeComponent.prototype.deleteUser = function (id) {
         var _this = this;
@@ -983,9 +928,8 @@ var HomeComponent = /** @class */ (function () {
     HomeComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             template: __webpack_require__(/*! ./home.component.html */ "./src/app/home/home.component.html"),
-            providers: [_services_chat__WEBPACK_IMPORTED_MODULE_3__["ChatService"]]
         }),
-        __metadata("design:paramtypes", [_services__WEBPACK_IMPORTED_MODULE_2__["UserService"], _services_chat__WEBPACK_IMPORTED_MODULE_3__["ChatService"]])
+        __metadata("design:paramtypes", [_services__WEBPACK_IMPORTED_MODULE_2__["UserService"]])
     ], HomeComponent);
     return HomeComponent;
 }());
