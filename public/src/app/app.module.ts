@@ -18,16 +18,16 @@ import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
 
 import { AgmCoreModule } from '@agm/core';
-import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+//import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
-let config: SocketIoConfig;
-let user = <any>localStorage.getItem('currentUser');
-if (user) {
-    user = JSON.parse(user);
+//let config: SocketIoConfig;
+// let user = <any>localStorage.getItem('currentUser');
+// if (user) {
+//     user = JSON.parse(user);
 
-    if ('token' in user)
-        config = { url: 'http://' + window.location.hostname + ':4000', options: { query: "token=" + user.token + '&iemi=' + user.imei } };
-}
+//     if ('token' in user)
+//         config = { url: 'http://' + window.location.hostname + ':4000', options: { query: "token=" + user.token + '&iemi=' + user.imei } };
+// }
 
 @NgModule({
     imports: [
@@ -39,7 +39,7 @@ if (user) {
             apiKey: 'AIzaSyDm3MIEQgeB21x6llnIX-76fvpxC3eqw0Q',
             libraries: ['places']
         }),
-        SocketIoModule.forRoot(config)
+        //SocketIoModule.forRoot(config)
     ],
     declarations: [
         AppComponent,

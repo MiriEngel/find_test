@@ -26,6 +26,7 @@
     "ngx-socket-io": "^1.1.1",
     "rxjs": "^6.3.3",
     "rxjs-compat": "^6.3.3",
+    "socket.io-client": "^2.1.1",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {

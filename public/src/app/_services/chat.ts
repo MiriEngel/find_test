@@ -6,13 +6,13 @@ export class ChatService {
 
     constructor(private socket: Socket) { }
 
-    sendMessage(msg: string){
+    sendMessage(msg: string) {
         this.socket.emit("data", msg);
     }
-     getMessage() {
+    getMessage() {
         return <any>this.socket
             .fromEvent("data")
-            .pipe(map( data => data ));
+            .pipe(map(data => Object.assign(data, { socket: this.socket.ioSocket.id })));
     }
 }
 

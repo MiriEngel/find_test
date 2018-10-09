@@ -4,7 +4,9 @@ import { first } from 'rxjs/operators';
 import { User } from '../_models';
 import { UserService } from '../_services';
 
-import { ChatService } from '../_services/chat';
+//import { ChatService } from '../_services/chat';
+
+import * as io from 'socket.io-client';
 
 export class Message {
     constructor(
@@ -14,10 +16,9 @@ export class Message {
     ) { }
 }
 
-
 @Component({
     templateUrl: 'home.component.html',
-    providers: [ChatService]
+    // providers: [ChatService]
 }
 )
 export class HomeComponent implements OnInit {
@@ -27,22 +28,44 @@ export class HomeComponent implements OnInit {
 
     currentUser: User;
     users: User[] = [];
+    socket: io.SocketIOClient.Socket;
 
-    constructor(private userService: UserService, private chatService: ChatService) {
+    constructor(private userService: UserService, /*private chatService: ChatService*/) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
-        chatService.getMessage().subscribe(msg => {
+        let user = <any>localStorage.getItem('currentUser');
+        if (user) {
+            user = JSON.parse(user);
 
-            console.log("Response from websocket: " + msg);
-            if (msg.data.latitude) {
-                this.lat = msg.data.latitude;
-                this.lng = msg.data.longitude;
-            }
-        });
+            if ('token' in user)
+                this.socket = io.connect(`http://${window.location.hostname}:4000?token=${user.token}&iemi=${user.imei}`);
+            //  config = { url: 'http://' + window.location.hostname + ':4000', options: { query: "token=" + user.token + '&iemi=' + user.imei } };
+        }
+
+        // chatService.getMessage().subscribe(msg => {
+        //     console.log("Response from websocket: ", msg);
+        //     if (msg.data.latitude) {
+        //         this.lat = msg.data.latitude;
+        //         this.lng = msg.data.longitude;
+        //     }
+        // });
     }
 
     ngOnInit() {
         this.loadAllUsers();
+
+        this.socket.emit('init');
+        this.socket.on('message', function (data) {
+            console.log(data.msg)
+        })
+
+        this.socket.on('data', (msg) => {
+            console.log("Response from websocket: ", msg);
+            if (msg.data.latitude) {
+                this.lat = msg.data.latitude;
+                this.lng = msg.data.longitude;
+            }
+        })
     }
 
     deleteUser(id: number) {
