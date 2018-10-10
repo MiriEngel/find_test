@@ -5,7 +5,7 @@ const path = require('path');
 const http = require('http');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const ctrl = require('./controller/tracking')
+const ctrl = require('./tracking/tracking.controller');
 
 const jwt = require('_helpers/jwt');
 const errorHandler = require('_helpers/error-handler');

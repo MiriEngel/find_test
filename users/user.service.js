@@ -16,11 +16,11 @@ module.exports = {
 async function authenticate({ imei, password }) {
     const user = await User.findOne({ imei });
     if (user && bcrypt.compareSync(password, user.hash)) {
-        const userWithoutHash = []
-        //const { hash, ...userWithoutHash } = user.toObject();
-         const token = jwt.sign({ sub: user.id }, config.secret);
-         //return {...userWithoutHash, token  };
-         return {userWithoutHash, token  };
+        //const userWithoutHash = []
+        const { hash, ...userWithoutHash } = user.toObject();
+        const token = jwt.sign({ sub: user.id }, config.secret);
+        return { ...userWithoutHash, token };
+        // return {userWithoutHash, token  };
     }
 }
 

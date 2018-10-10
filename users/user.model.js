@@ -10,7 +10,7 @@ const schema = new Schema({
     //imei1:{ type: String, required: true },
    // lastPoints: { type: [Number], index: '2dsphere'}
 });
-
+    
 schema.set('toJSON', { virtuals: true });
 //schema.index({ lastPoints: '2dsphere' })
 module.exports = mongoose.model('User', schema);
