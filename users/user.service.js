@@ -19,8 +19,8 @@ async function authenticate({ imei, password }) {
         //const userWithoutHash = []
         const { hash, ...userWithoutHash } = user.toObject();
         const token = jwt.sign({ sub: user.id }, config.secret);
-        return { ...userWithoutHash, token };
-        // return {userWithoutHash, token  };
+        //return { ...userWithoutHash, token };
+         return Object.assign(userWithoutHash, token );
     }
 }
 
