@@ -26,8 +26,8 @@ module.exports.start = io => {
     }
 
     io.on('connection', socket => {
+        let imeis = socket.handshake.query.iemi;
         try {
-            let imeis = socket.handshake.query.iemi;
             if (imeis) {
                 imeis.split(',').map(imei => {
                     if (!sockets[imei])
