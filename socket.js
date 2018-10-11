@@ -36,7 +36,7 @@ module.exports.start = io => {
                 })
             }
         } catch (err) {
-            console.log('error:'+ err);
+            console.log('error:  '+ err);
         }
         // module.exports.sendMsgClient({ imei, data: { 'test': 'welcome!!' } });
 
