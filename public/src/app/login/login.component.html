@@ -1,10 +1,10 @@
 ﻿<h2>Login</h2>
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-        <label for="imei">imei</label>
-        <input type="text" formControlName="imei" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.imei.errors }" />
-        <div *ngIf="submitted && f.imei.errors" class="invalid-feedback">
-            <div *ngIf="f.imei.errors.required">imei is required</div>
+        <label for="email">email</label>
+        <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <div *ngIf="f.email.errors.required">email is required</div>
         </div>
     </div>
     <div class="form-group">

@@ -10,17 +10,18 @@ module.exports = {
     getById,
     create,
     update,
-    delete: _delete
+    delete: _delete,
+    addImei
 };
 
-async function authenticate({ imei, password }) {
-    const user = await User.findOne({ imei });
+async function authenticate({ email, password }) {
+    const user = await User.findOne({ email });
     if (user && bcrypt.compareSync(password, user.hash)) {
-       // const { hash, ...userWithoutHash } = user.toObject();
-       const userWithoutHash =  Object.assign({}, user.toObject(), {hash: undefined});
+        // const { hash, ...userWithoutHash } = user.toObject();
+        const userWithoutHash = Object.assign({}, user.toObject(), { hash: undefined });
         const token = jwt.sign({ sub: user.id }, config.secret);
         //return { ...userWithoutHash, token };
-         return Object.assign({},userWithoutHash, {token} );
+        return Object.assign({}, userWithoutHash, { token });
     }
 }
 
@@ -34,8 +35,8 @@ async function getById(id) {
 
 async function create(userParam) {
     // validate
-    if (await User.findOne({ imei: userParam.imei })) {
-        throw 'imei "' + userParam.imei + '" is already taken';
+    if (await User.findOne({ email: userParam.email })) {
+        throw 'email "' + userParam.email + '" is already taken';
     }
 
     const user = new User(userParam);
@@ -54,8 +55,8 @@ async function update(id, userParam) {
 
     // validate
     if (!user) throw 'User not found';
-    if (user.imei !== userParam.imei && await User.findOne({ imei: userParam.imei })) {
-        throw 'imei "' + userParam.imei + '" is already taken';
+    if (user.email !== userParam.email && await User.findOne({ email: userParam.email })) {
+        throw 'email "' + userParam.email + '" is already taken';
     }
 
     // hash password if it was entered
@@ -67,6 +68,19 @@ async function update(id, userParam) {
     Object.assign(user, userParam);
 
     await user.save();
+}
+
+async function addImei(id, imei) {
+    try {
+        const user = await User.findById(id);
+        // validate
+        if (!user) throw 'User not found';
+
+        user.imei.push(imei)
+        await user.save();
+    } catch (err) {
+        console.log(err);
+    }
 }
 
 async function _delete(id) {

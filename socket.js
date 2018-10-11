@@ -26,17 +26,27 @@ module.exports.start = io => {
     }
 
     io.on('connection', socket => {
-        let imei = socket.handshake.query.iemi;
-        if (!sockets[imei])
-            sockets[imei] = []
-
-        sockets[imei].push(socket.id);
-
-        module.exports.sendMsgClient({imei,data:{'test':'welcome!!'}});
+        try {
+            let imeis = socket.handshake.query.iemi;
+            if (imeis) {
+                imeis.split(',').map(imei => {
+                    if (!sockets[imei])
+                        sockets[imei] = []
+                    sockets[imei].push(socket.id);
+                })
+            }
+        } catch (err) {
+            console.log(err);
+        }
+        // module.exports.sendMsgClient({ imei, data: { 'test': 'welcome!!' } });
 
         socket.on('disconnect', () => {
-            sockets[imei].splice(sockets[imei].indexOf(socket.id), 1);
-            console.log(`user socket: ${socket.id} imei:${imei} disconnected`)
+            if (imeis) {
+                imeis.split(',').map(imei => {
+                    sockets[imei].splice(sockets[imei].indexOf(socket.id), 1);
+                    console.log(`user socket: ${socket.id} imei:${imei} disconnected`)
+                });
+            }
         });
     })
 }

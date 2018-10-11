@@ -74,6 +74,13 @@ export class HomeComponent implements OnInit {
         });
     }
 
+    addIemei(imei:string){
+        this.userService.addImei(imei,this.currentUser._id).pipe(first()).subscribe(users => {
+            //this.users = users;
+            alert('imei saved!');
+        });
+    }
+
     private loadAllUsers() {
         this.userService.getAll().pipe(first()).subscribe(users => {
             this.users = users;

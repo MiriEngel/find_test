@@ -20,11 +20,15 @@ export class UserService {
         return this.http.post(`${environment.apiUrl}/users/register`, user);
     }
 
-    update(user: User) {
+    update(user: User) {    
         return this.http.put(`${environment.apiUrl}/users/` + user.id, user);
     }
 
     delete(id: number) {
         return this.http.delete(`${environment.apiUrl}/users/` + id);
+    }
+
+    addImei(imei: string,id: number){
+        return this.http.put(`${environment.apiUrl}/users/imei/` + id ,{imei});
     }
 }

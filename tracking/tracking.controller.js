@@ -8,7 +8,7 @@ const options = {
     'device_adapter': require('./tracking.protocol')
 }
 
-sendMsgClient({ data: 'testttttttttttttt' });
+//sendMsgClient({ data: 'testttttttttttttt' });
 //protocol:gt06	 port:5023
 var server = gps.server(options, function (device, connection) {
 

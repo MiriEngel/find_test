@@ -26,6 +26,7 @@ router.get('/', getAll);
 router.get('/current', getCurrent);
 router.get('/:id', getById);
 router.put('/:id', update);
+router.put('/imei/:id', addImei);
 router.delete('/:id', _delete);
 
 module.exports = router;    
@@ -64,6 +65,12 @@ function update(req, res, next) {
     userService.update(req.params.id, req.body)
         .then(() => res.json({}))
         .catch(err => next(err));
+}
+
+function addImei(req, res, next){
+    userService.addImei(req.params.id, req.body.imei)
+    .then(() => res.json({}))
+    .catch(err => next(err));
 }
 
 function _delete(req, res, next) {

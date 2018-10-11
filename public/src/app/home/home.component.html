@@ -5,7 +5,11 @@
 
 
 <div>
-    Users from secure api end point:
+   add iemei:
+   <input #box (keyup.enter)="addIemei(box.value)">
+
+<button  (click)="addIemei(box.value)">save</button>>
+
     <ul>
         <li *ngFor="let user of users">{{user.firstName}} {{user.lastName}}</li>
     </ul>
