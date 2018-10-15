@@ -44,7 +44,7 @@ module.exports.start = io => {
             if (imeis) {
                 imeis.split(',').map(imei => {
                     sockets[imei].splice(sockets[imei].indexOf(socket.id), 1);
-                    console.log(`user socket: ${socket.id} imei:${imei} disconnected`)
+                   // console.log(`user socket: ${socket.id} imei:${imei} disconnected`)
                 });
             }
         });

@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://' + window.location.hostname + ':4000'//'http://localhost:4000'//http://18.223.179.147:4000
+  apiUrl: 'http://' + window.location.hostname + ':4000',//'http://localhost:4000'//http://18.223.179.147:4000
+  defaultLanguage: 'en-US',
+  supportedLanguages: ['en-US', 'fr-FR']
 };
 
 /*

@@ -1,0 +1,61 @@
+<div class="card">
+    
+      <div class="header">
+        <h2 class="title">Products</h2>
+      </div>
+     <div class="content">
+    
+        <form #f="ngForm">
+
+          <!-- <div class="form-group">
+            <label>From:</label>
+            <input [(ngModel)]="filter.from" name="from" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label>To:</label>
+            <input [(ngModel)]="filter.to" name="to" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <button (click)="search()" [disabled]="!f?.valid" class="btn btn-default">
+              Search
+            </button> -->
+            <a [routerLink]="['../product','new']" class="btn btn-default">
+                New
+            </a>
+  
+          <!-- </div> -->
+          
+        </form>
+    
+      </div> 
+
+
+    </div>
+    
+    <div class="card" *ngIf="products.length > 0">
+    
+      <table class="table table-contensed" >
+        <thead>
+        <tr>            
+            <th>Name</th>            
+            <th>Details</th>            
+            <th>imei</th>            
+            <th>Created</th>
+        </tr>
+        </thead>
+        <tr *ngFor="let item of products">
+            <td>{{item.name}}</td>
+            <td>{{item.details}}</td>
+            <td>{{item.imei}}</td>
+            <td>{{item.created | date}}</td>
+            <td>
+                
+                <a [routerLink]="['../product', item.id ]">Details</a> |           
+                <a (click)="select(item)">Select</a>
+            </td>
+        </tr>
+      </table>
+    
+    </div>

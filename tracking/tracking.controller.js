@@ -28,7 +28,7 @@ var server = gps.server(options, function (device, connection) {
         //Look what informations the device sends to you (maybe velocity, gas level, etc)
         sendMsgClient(Object.assign({ imei: this.getUID() }, data));
         // return data;
-        return savePoints({ imei: this.getUID(), lat: data.latitude, lon: data.longitude });
+        //return savePoints({ imei: this.getUID(), lat: data.latitude, lon: data.longitude });
     });
 
     device.on("alarm", function (alarm_code, alarm_data, msg_data) {

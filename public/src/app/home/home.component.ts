@@ -4,7 +4,7 @@ import { first } from 'rxjs/operators';
 import { User } from '../_models';
 import { UserService } from '../_services';
 
-//import { ChatService } from '../_services/chat';
+
 
 import * as io from 'socket.io-client';
 
@@ -25,12 +25,15 @@ export class HomeComponent implements OnInit {
     title: string = 'My first AGM project';
     lat: number = 43.678418;
     lng: number = -79.809007;
+    toggledClass = true;
 
     currentUser: User;
     users: User[] = [];
     socket: io.SocketIOClient.Socket;
 
-    constructor(private userService: UserService, /*private chatService: ChatService*/) {
+    constructor(private userService: UserService
+       // private dropdownDirective:DropdownDirective
+         /*private chatService: ChatService*/) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
         let user = <any>localStorage.getItem('currentUser');
@@ -87,4 +90,5 @@ export class HomeComponent implements OnInit {
         });
     }
 
+   
 }

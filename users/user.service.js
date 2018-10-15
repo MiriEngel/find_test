@@ -75,9 +75,11 @@ async function addImei(id, imei) {
         const user = await User.findById(id);
         // validate
         if (!user) throw 'User not found';
-
-        user.imei.push(imei)
-        await user.save();
+        if (user.imei.indexOf(imei) == -1) {
+            user.imei.push(imei)
+            await user.save();
+        }
+        return user;
     } catch (err) {
         console.log(err);
     }

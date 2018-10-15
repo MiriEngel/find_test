@@ -1,6 +1,13 @@
 ﻿
+<body id="page-top" [ngClass] = "toggledClass?'sidebar-toggled':''">
 
-
+    <div class="container page">
+        <div class="row">
+        
+              <div id="content-wrapper">
+        
+               
+        
 <h1>Hi {{currentUser.firstName}}!</h1>
 
 
@@ -14,11 +21,16 @@
         <li *ngFor="let user of users">{{user.firstName}} {{user.lastName}}</li>
     </ul>
 </div>
-<p><a [routerLink]="['/login']">Logout</a></p>
 
 <agm-map  [zoom]="12" [latitude]="lat" [longitude]="lng">
   <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
 </agm-map>
+
+</div>
+</div>
+</div>
+        
+</body>
 <style>
     agm-map {
     height: 600px;
@@ -137,4 +149,3 @@
     padding: 0;
   }
 </style> -->
-
