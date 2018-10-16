@@ -26,4 +26,15 @@ export class HeaderComponent implements OnInit{
       get languages(): string[] {
         return this.i18nService.supportedLanguages;
       }
+      get logged() {
+        let user = <any>localStorage.getItem('currentUser');
+        if (user) {
+            user = JSON.parse(user);
+
+            if ('token' in user)
+                return true;
+            //this.user = _authenticationService.;
+        }
+        return false;
+    }
 }

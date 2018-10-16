@@ -664,15 +664,20 @@ var AuthenticationService = /** @class */ (function () {
         this.http = http;
     }
     AuthenticationService.prototype.login = function (email, password) {
+        var _this = this;
         return this.http.post(_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].apiUrl + "/users/authenticate", { email: email, password: password })
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (user) {
             // login successful if there's a jwt token in the response
             if (user && user.token) {
+                _this.user = user;
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('currentUser', JSON.stringify(__assign({}, user, { email: email })));
             }
             return user;
         }));
+    };
+    AuthenticationService.prototype.isLoggedIn = function () {
+        return (!!this.user);
     };
     AuthenticationService.prototype.logout = function () {
         // remove user from local storage to log user out
@@ -685,6 +690,41 @@ var AuthenticationService = /** @class */ (function () {
     return AuthenticationService;
 }());
 
+// import 'rxjs/Rx';
+// import {Injectable} from '@angular/core';
+// import {Http, Response, Headers, RequestOptions} from '@angular/http';
+// import {Observable} from 'rxjs/Observable';
+// @Injectable()
+// export class AuthenticationService {
+// 	public user = window['user'];
+// 	private _signinURL = 'api/auth/signin';
+// 	private _signupURL = 'api/auth/signup';
+// 	constructor (private http: Http) {
+// 	}
+// 	isLoggedIn(): boolean {
+// 		return (!!this.user);
+// 	}
+// 	signin(credentials: any): Observable<any> {
+//     	let body = JSON.stringify(credentials);
+//     	let headers = new Headers({ 'Content-Type': 'application/json' });
+//     	let options = new RequestOptions({ headers: headers });
+// 		return this.http.post(this._signinURL, body, options)
+//                         .map(res => this.user = res.json())
+//                         .catch(this.handleError)
+//   	}
+//   	signup(user: any): Observable<any> {
+//     	let body = JSON.stringify(user);
+//     	let headers = new Headers({ 'Content-Type': 'application/json' });
+//     	let options = new RequestOptions({ headers: headers });
+// 		return this.http.post(this._signupURL, body, options)
+//                         .map(res => this.user = res.json())
+//                         .catch(this.handleError)
+//   	}
+// 	private handleError(error: Response) {
+// 		console.error(error);
+// 		return Observable.throw(error.json().message || 'Server error');
+// 	}
+// }
 
 
 /***/ }),
@@ -1297,7 +1337,7 @@ var routing = _angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"].forRo
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div [ngClass] = \"toggledClass?'sidebar-toggled':''\">\r\n    \r\n\r\n<nav class=\"navbar navbar-expand navbar-dark bg-dark static-top\">\r\n        \r\n              <a class=\"navbar-brand mr-1\" href=\"\">moveProtect</a>\r\n        \r\n        \r\n              <!-- Navbar Search -->\r\n              <form class=\"d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0\">\r\n                <div class=\"input-group\">\r\n                  <input type=\"text\" class=\"form-control\" placeholder=\"Search for...\" aria-label=\"Search\" aria-describedby=\"basic-addon2\">\r\n                  <div class=\"input-group-append\">\r\n                    <button class=\"btn btn-primary\" type=\"button\">\r\n                      <i class=\"fas fa-search\"></i>\r\n                    </button>\r\n                  </div>\r\n                </div>\r\n              </form>\r\n        \r\n              <!-- Navbar -->\r\n              <ul class=\"navbar-nav ml-auto ml-md-0\">\r\n      \r\n                  <!-- <li class=\"nav-item dropdown\" appDropdown>\r\n                      <a class=\"nav-link dropdown-toggle\"  id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Username\r\n                      </a>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">\r\n                         <a class=\"dropdown-item\" >Profile 2</a>\r\n                         <a class=\"dropdown-item\" >Logout 2</a>\r\n                      </div>\r\n                    </li> -->\r\n                    <li class=\"nav-item\"  placement=\"bottom-right\" appDropdown>\r\n                        <a id=\"language-dropdown\" class=\"nav-link\" >{{currentLanguage}}</a>\r\n                        <div  class=\"dropdown-menu dropdown-menu-right \" aria-labelledby=\"language-dropdown\">\r\n                          <a class=\"dropdown-item\" *ngFor=\"let language of languages\" (click)=\"setLanguage(language)\">\r\n                            {{language}}\r\n                          </a>\r\n                        </div>\r\n                      </li>\r\n                <li class=\"nav-item dropdown no-arrow mx-1\" appDropdown>\r\n                  <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"alertsDropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                    <i class=\"fas fa-bell fa-fw\"></i>\r\n                    <span class=\"badge badge-danger\">9+</span>\r\n                  </a>\r\n                  <div  class=\"dropdown-menu dropdown-menu-right \" aria-labelledby=\"alertsDropdown\">\r\n                    <a class=\"dropdown-item\" href=\"#\"><span translate>About</span></a>\r\n                    <a class=\"dropdown-item\" href=\"#\">Another action</a>\r\n                    <div class=\"dropdown-divider\"></div>\r\n                    <a class=\"dropdown-item\" href=\"#\">Something else here</a>\r\n                  </div>\r\n                </li>\r\n                <li class=\"nav-item dropdown no-arrow mx-1\" appDropdown>\r\n                  <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"messagesDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                    <i class=\"fas fa-envelope fa-fw\"></i>\r\n                    <span class=\"badge badge-danger\">7</span>\r\n                  </a>\r\n                  <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"messagesDropdown\">\r\n                    <a class=\"dropdown-item\" href=\"#\">Action</a>\r\n                    <a class=\"dropdown-item\" href=\"#\">Another action</a>\r\n                    <div class=\"dropdown-divider\"></div>\r\n                    <a class=\"dropdown-item\" href=\"#\">Something else here</a>\r\n                  </div>\r\n                </li>\r\n                <li class=\"nav-item dropdown no-arrow\" appDropdown>\r\n                  <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"userDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                    <i class=\"fas fa-user-circle fa-fw\"></i>\r\n                  </a>\r\n                  <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"userDropdown\">\r\n                    <a class=\"dropdown-item\" href=\"#\">Settings</a>\r\n                    <a class=\"dropdown-item\" href=\"#\">Activity Log</a>\r\n                    <div class=\"dropdown-divider\"></div>\r\n                    <a class=\"dropdown-item\"  [routerLink]=\"['/login']\">Logout</a>\r\n                  </div>\r\n                </li>\r\n              </ul>\r\n        \r\n            </nav>\r\n          </div>  \r\n      <!-- <div id=\"wrapper\"> -->\r\n        \r\n    "
+module.exports = "<div *ngIf=\"logged\" [ngClass] = \"toggledClass?'sidebar-toggled':''\">\r\n    \r\n\r\n<nav class=\"navbar navbar-expand navbar-dark bg-dark static-top\">\r\n        \r\n              <a class=\"navbar-brand mr-1\" href=\"\">moveProtect</a>\r\n        \r\n        \r\n              <!-- Navbar Search -->\r\n              <form class=\"d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0\">\r\n                <div class=\"input-group\">\r\n                  <input type=\"text\" class=\"form-control\" placeholder=\"Search for...\" aria-label=\"Search\" aria-describedby=\"basic-addon2\">\r\n                  <div class=\"input-group-append\">\r\n                    <button class=\"btn btn-primary\" type=\"button\">\r\n                      <i class=\"fas fa-search\"></i>\r\n                    </button>\r\n                  </div>\r\n                </div>\r\n              </form>\r\n        \r\n              <!-- Navbar -->\r\n              <ul class=\"navbar-nav ml-auto ml-md-0\">\r\n      \r\n                  <!-- <li class=\"nav-item dropdown\" appDropdown>\r\n                      <a class=\"nav-link dropdown-toggle\"  id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Username\r\n                      </a>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">\r\n                         <a class=\"dropdown-item\" >Profile 2</a>\r\n                         <a class=\"dropdown-item\" >Logout 2</a>\r\n                      </div>\r\n                    </li> -->\r\n                    <li class=\"nav-item\"  placement=\"bottom-right\" appDropdown>\r\n                        <a id=\"language-dropdown\" class=\"nav-link\" >{{currentLanguage}}</a>\r\n                        <div  class=\"dropdown-menu dropdown-menu-right \" aria-labelledby=\"language-dropdown\">\r\n                          <a class=\"dropdown-item\" *ngFor=\"let language of languages\" (click)=\"setLanguage(language)\">\r\n                            {{language}}\r\n                          </a>\r\n                        </div>\r\n                      </li>\r\n                <li class=\"nav-item dropdown no-arrow mx-1\" appDropdown>\r\n                  <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"alertsDropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                    <i class=\"fas fa-bell fa-fw\"></i>\r\n                    <span class=\"badge badge-danger\">9+</span>\r\n                  </a>\r\n                  <div  class=\"dropdown-menu dropdown-menu-right \" aria-labelledby=\"alertsDropdown\">\r\n                    <a class=\"dropdown-item\" href=\"#\"><span translate>About</span></a>\r\n                    <a class=\"dropdown-item\" href=\"#\">Another action</a>\r\n                    <div class=\"dropdown-divider\"></div>\r\n                    <a class=\"dropdown-item\" href=\"#\">Something else here</a>\r\n                  </div>\r\n                </li>\r\n                <li class=\"nav-item dropdown no-arrow mx-1\" appDropdown>\r\n                  <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"messagesDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                    <i class=\"fas fa-envelope fa-fw\"></i>\r\n                    <span class=\"badge badge-danger\">7</span>\r\n                  </a>\r\n                  <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"messagesDropdown\">\r\n                    <a class=\"dropdown-item\" href=\"#\">Action</a>\r\n                    <a class=\"dropdown-item\" href=\"#\">Another action</a>\r\n                    <div class=\"dropdown-divider\"></div>\r\n                    <a class=\"dropdown-item\" href=\"#\">Something else here</a>\r\n                  </div>\r\n                </li>\r\n                <li class=\"nav-item dropdown no-arrow\" appDropdown>\r\n                  <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"userDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                    <i class=\"fas fa-user-circle fa-fw\"></i>\r\n                  </a>\r\n                  <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"userDropdown\">\r\n                    <a class=\"dropdown-item\" href=\"#\">Settings</a>\r\n                    <a class=\"dropdown-item\" href=\"#\">Activity Log</a>\r\n                    <div class=\"dropdown-divider\"></div>\r\n                    <a class=\"dropdown-item\"  [routerLink]=\"['/login']\">Logout</a>\r\n                  </div>\r\n                </li>\r\n              </ul>\r\n        \r\n            </nav>\r\n          </div>  \r\n      <!-- <div id=\"wrapper\"> -->\r\n        \r\n    "
 
 /***/ }),
 
@@ -1344,6 +1384,20 @@ var HeaderComponent = /** @class */ (function () {
     Object.defineProperty(HeaderComponent.prototype, "languages", {
         get: function () {
             return this.i18nService.supportedLanguages;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(HeaderComponent.prototype, "logged", {
+        get: function () {
+            var user = localStorage.getItem('currentUser');
+            if (user) {
+                user = JSON.parse(user);
+                if ('token' in user)
+                    return true;
+                //this.user = _authenticationService.;
+            }
+            return false;
         },
         enumerable: true,
         configurable: true
@@ -2009,7 +2063,7 @@ var RegisterComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n    \r\n           \r\n      <!-- <div id=\"wrapper\"> -->\r\n        \r\n                <!-- Sidebar -->\r\n                \r\n            \r\n                <ul class=\"sidebar navbar-nav\" [ngClass] = \"toggledClass?'toggled':''\">\r\n                    <button class=\"btn btn-link btn-sm text-white order-1 order-sm-0\" id=\"sidebarToggle\" (click) = \"toggledClass = !toggledClass\">\r\n                        <i class=\"fas fa-bars\"></i>\r\n                      </button>\r\n                  <li class=\"nav-item active\">\r\n                    <a class=\"nav-link\"[routerLink]=\"['/product']\">\r\n                      <i class=\"fas fa-fw fa-tachometer-alt\"></i>\r\n                      <span>Products</span>\r\n                    </a>\r\n                  </li>\r\n                  <li class=\"nav-item dropdown\">\r\n                    <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"pagesDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                      <i class=\"fas fa-fw fa-folder\"></i>\r\n                      <span>Pages</span>\r\n                    </a>\r\n                    <div class=\"dropdown-menu\" aria-labelledby=\"pagesDropdown\">\r\n                      <h6 class=\"dropdown-header\">Login Screens:</h6>\r\n                      <a class=\"dropdown-item\" href=\"login.html\">Login</a>\r\n                      <a class=\"dropdown-item\" href=\"register.html\">Register</a>\r\n                      <a class=\"dropdown-item\" href=\"forgot-password.html\">Forgot Password</a>\r\n                      <div class=\"dropdown-divider\"></div>\r\n                      <h6 class=\"dropdown-header\">Other Pages:</h6>\r\n                      <a class=\"dropdown-item\" href=\"404.html\">404 Page</a>\r\n                      <a class=\"dropdown-item\" href=\"blank.html\">Blank Page</a>\r\n                    </div>\r\n                  </li>\r\n                  <li class=\"nav-item\">\r\n                    <a class=\"nav-link\" href=\"charts.html\">\r\n                      <i class=\"fas fa-fw fa-chart-area\"></i>\r\n                      <span>Charts</span></a>\r\n                  </li>\r\n                  <li class=\"nav-item\">\r\n                    <a class=\"nav-link\" href=\"tables.html\">\r\n                      <i class=\"fas fa-fw fa-table\"></i>\r\n                      <span>Tables</span></a>\r\n                  </li>\r\n                </ul>\r\n          \r\n"
+module.exports = "\r\n    \r\n           \r\n     <div *ngIf=\"logged\"> \r\n        \r\n                <!-- Sidebar -->\r\n                \r\n            \r\n                <ul class=\"sidebar navbar-nav\" [ngClass] = \"toggledClass?'toggled':''\">\r\n                    <button class=\"btn btn-link btn-sm text-white order-1 order-sm-0\" id=\"sidebarToggle\" (click) = \"toggledClass = !toggledClass\">\r\n                        <i class=\"fas fa-bars\"></i>\r\n                      </button>\r\n                  <li class=\"nav-item active\">\r\n                    <a class=\"nav-link\"[routerLink]=\"['/product']\">\r\n                      <i class=\"fas fa-fw fa-tachometer-alt\"></i>\r\n                      <span>Products</span>\r\n                    </a>\r\n                  </li>\r\n                  <li class=\"nav-item dropdown\">\r\n                    <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"pagesDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                      <i class=\"fas fa-fw fa-folder\"></i>\r\n                      <span>Pages</span>\r\n                    </a>\r\n                    <div class=\"dropdown-menu\" aria-labelledby=\"pagesDropdown\">\r\n                      <h6 class=\"dropdown-header\">Login Screens:</h6>\r\n                      <a class=\"dropdown-item\" href=\"login.html\">Login</a>\r\n                      <a class=\"dropdown-item\" href=\"register.html\">Register</a>\r\n                      <a class=\"dropdown-item\" href=\"forgot-password.html\">Forgot Password</a>\r\n                      <div class=\"dropdown-divider\"></div>\r\n                      <h6 class=\"dropdown-header\">Other Pages:</h6>\r\n                      <a class=\"dropdown-item\" href=\"404.html\">404 Page</a>\r\n                      <a class=\"dropdown-item\" href=\"blank.html\">Blank Page</a>\r\n                    </div>\r\n                  </li>\r\n                  <li class=\"nav-item\">\r\n                    <a class=\"nav-link\" href=\"charts.html\">\r\n                      <i class=\"fas fa-fw fa-chart-area\"></i>\r\n                      <span>Charts</span></a>\r\n                  </li>\r\n                  <li class=\"nav-item\">\r\n                    <a class=\"nav-link\" href=\"tables.html\">\r\n                      <i class=\"fas fa-fw fa-table\"></i>\r\n                      <span>Tables</span></a>\r\n                  </li>\r\n                </ul>\r\n                </div>\r\n          \r\n"
 
 /***/ }),
 
@@ -2024,6 +2078,7 @@ module.exports = "\r\n    \r\n           \r\n      <!-- <div id=\"wrapper\"> -->
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SideComponent", function() { return SideComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../_services */ "./src/app/_services/index.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2034,18 +2089,36 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var SideComponent = /** @class */ (function () {
-    function SideComponent() {
-        //this.user = _authenticationService.;
+    function SideComponent(authenticationService
+    /*private _authenticationService: AuthenticationService*/ ) {
+        //authenticationService.isLoggedIn()
     }
     SideComponent.prototype.ngOnInit = function () {
     };
+    Object.defineProperty(SideComponent.prototype, "logged", {
+        get: function () {
+            var user = localStorage.getItem('currentUser');
+            if (user) {
+                user = JSON.parse(user);
+                if ('token' in user)
+                    return true;
+                //this.user = _authenticationService.;
+            }
+            return false;
+        },
+        enumerable: true,
+        configurable: true
+    });
     SideComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'side',
             template: __webpack_require__(/*! ./sideBar.component.html */ "./src/app/sideBar/sideBar.component.html"),
+            providers: [_services__WEBPACK_IMPORTED_MODULE_1__["AuthenticationService"]]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_services__WEBPACK_IMPORTED_MODULE_1__["AuthenticationService"]
+            /*private _authenticationService: AuthenticationService*/ ])
     ], SideComponent);
     return SideComponent;
 }());
