@@ -1,13 +1,13 @@
 ﻿
-<body id="page-top" [ngClass] = "toggledClass?'sidebar-toggled':''">
+<body id="page-top" >
 
-    <div class="container page">
+ <!-- <div class="container page">
         <div class="row">
         
-              <div id="content-wrapper">
-        
+              <div id="content-wrapper"> -->
+    
                
-        
+<!--         
 <h1>Hi {{currentUser.firstName}}!</h1>
 
 
@@ -20,22 +20,27 @@
     <ul>
         <li *ngFor="let user of users">{{user.firstName}} {{user.lastName}}</li>
     </ul>
-</div>
+</div> -->
 
-<agm-map  [zoom]="12" [latitude]="lat" [longitude]="lng">
+<!-- <div class="container" fxLayout="column" style="margin:0px">
+    <div class="map" fxFlex="1 1 100%" #map>
+      <agm-map [style.height.px]="map.offsetHeight" [latitude]="lat" [longitude]="lng"></agm-map>
+    </div>
+  </div> -->
+  <agm-map  [zoom]="12" [latitude]="lat" [longitude]="lng">
   <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-</agm-map>
+</agm-map>  
 
+ <!-- </div>
 </div>
-</div>
-</div>
-        
+</div> 
+         -->
 </body>
 <style>
-    agm-map {
-    height: 600px;
-    width: 600px;
-}
+     agm-map {
+    height:100vh;
+    width:100%;
+} 
 </style>
 
 
