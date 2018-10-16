@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const db = require('_helpers/db');
 const Product = db.Product;
+const User = db.User;
 
 module.exports = {
     getAll,
@@ -27,6 +28,7 @@ async function create(userId,productParam) {
         product.userId = userId;
         // save user
         await product.save();
+        await addImei(userId,productParam.imei)
     } catch (err) {
         console.log(err)
     }
@@ -61,4 +63,18 @@ async function update(id, productParam) {
 
 async function _delete(id) {
     await Product.findByIdAndRemove(id);
+}
+
+async function addImei(id, imei) {
+    try {
+        const user = await User.findById(id);
+        // validate
+        if (!user) throw 'User not found';
+        if (user.imei.indexOf(imei) == -1) {
+            user.imei.push(imei)
+            await user.save();
+        }
+    } catch (err) {
+        console.log(err);
+    }
 }
