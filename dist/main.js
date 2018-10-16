@@ -801,7 +801,7 @@ var I18nService = /** @class */ (function () {
 /*!************************************!*\
   !*** ./src/app/_services/index.ts ***!
   \************************************/
-/*! exports provided: AlertService, AuthenticationService, UserService, extract, I18nService, LogLevel, Logger */
+/*! exports provided: extract, I18nService, AlertService, AuthenticationService, UserService, LogLevel, Logger */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -999,7 +999,7 @@ var ProductService = /** @class */ (function () {
         this.http = http;
     }
     ProductService.prototype.getAll = function (userId) {
-        return this.http.get(_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].apiUrl + "/products/user/" + userId);
+        return this.http.post(_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].apiUrl + "/products", {});
     };
     ProductService.prototype.getById = function (id) {
         return this.http.get(_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].apiUrl + "/products/" + id);
@@ -1089,7 +1089,7 @@ var UserService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- main app container -->\r\n <!-- <div class=\"jumbotron\"> -->\r\n    <div class=\"container-fluid\" style=\"padding: 0px\" >\r\n        <div class=\"row\">\r\n                <div class=\"col-sm\">\r\n            <!-- <div class=\"col-sm-12\"> -->\r\n               <alert></alert> \r\n                <router-outlet></router-outlet>\r\n           </div> \r\n        </div>\r\n    <!-- </div> -->\r\n </div> \r\n\r\n\r\n\r\n"
+module.exports = "\r\n    <div class=\"\" style=\"margin:0px;padding:0px\">\r\n        <div class=\"row\">\r\n            <div class=\"col-sm-12\">\r\n                <header></header>\r\n            </div>\r\n            <div class=\"col-sm-3\">\r\n                <side></side>\r\n            </div>\r\n            <div class=\"col-sm-9\">\r\n                <alert></alert>\r\n                <router-outlet></router-outlet>\r\n            </div>\r\n            </div>\r\n    </div>\r\n"
 
 /***/ }),
 
@@ -1169,9 +1169,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./_helpers */ "./src/app/_helpers/index.ts");
 /* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./_services */ "./src/app/_services/index.ts");
 /* harmony import */ var _home__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./home */ "./src/app/home/index.ts");
-/* harmony import */ var _login__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./login */ "./src/app/login/index.ts");
-/* harmony import */ var _register__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./register */ "./src/app/register/index.ts");
-/* harmony import */ var _agm_core__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @agm/core */ "./node_modules/@agm/core/index.js");
+/* harmony import */ var _header_header_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./header/header.component */ "./src/app/header/header.component.ts");
+/* harmony import */ var _sideBar_sideBar_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./sideBar/sideBar.component */ "./src/app/sideBar/sideBar.component.ts");
+/* harmony import */ var _login__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./login */ "./src/app/login/index.ts");
+/* harmony import */ var _register__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./register */ "./src/app/register/index.ts");
+/* harmony import */ var _agm_core__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @agm/core */ "./node_modules/@agm/core/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1188,6 +1190,8 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 // import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 // used to create fake backend
 //import { fakeBackendProvider } from './_helpers';
+
+
 
 
 
@@ -1219,7 +1223,7 @@ var AppModule = /** @class */ (function () {
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"],
                 _app_routing__WEBPACK_IMPORTED_MODULE_8__["routing"],
-                _agm_core__WEBPACK_IMPORTED_MODULE_17__["AgmCoreModule"].forRoot({
+                _agm_core__WEBPACK_IMPORTED_MODULE_19__["AgmCoreModule"].forRoot({
                     apiKey: 'AIzaSyDm3MIEQgeB21x6llnIX-76fvpxC3eqw0Q',
                     libraries: ['places']
                 }),
@@ -1232,8 +1236,9 @@ var AppModule = /** @class */ (function () {
                 _directives__WEBPACK_IMPORTED_MODULE_10__["AlertComponent"],
                 _directives_dropdown_components__WEBPACK_IMPORTED_MODULE_9__["DropdownDirective"],
                 _home__WEBPACK_IMPORTED_MODULE_14__["HomeComponent"],
-                _login__WEBPACK_IMPORTED_MODULE_15__["LoginComponent"],
-                _register__WEBPACK_IMPORTED_MODULE_16__["RegisterComponent"],
+                _login__WEBPACK_IMPORTED_MODULE_17__["LoginComponent"],
+                _register__WEBPACK_IMPORTED_MODULE_18__["RegisterComponent"],
+                _header_header_component__WEBPACK_IMPORTED_MODULE_15__["HeaderComponent"], _sideBar_sideBar_component__WEBPACK_IMPORTED_MODULE_16__["SideComponent"]
             ],
             providers: [
                 _guards__WEBPACK_IMPORTED_MODULE_11__["AuthGuard"],
@@ -1285,6 +1290,78 @@ var routing = _angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"].forRo
 
 /***/ }),
 
+/***/ "./src/app/header/header.component.html":
+/*!**********************************************!*\
+  !*** ./src/app/header/header.component.html ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div [ngClass] = \"toggledClass?'sidebar-toggled':''\">\r\n    \r\n\r\n<nav class=\"navbar navbar-expand navbar-dark bg-dark static-top\">\r\n        \r\n              <a class=\"navbar-brand mr-1\" href=\"\">moveProtect</a>\r\n        \r\n        \r\n              <!-- Navbar Search -->\r\n              <form class=\"d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0\">\r\n                <div class=\"input-group\">\r\n                  <input type=\"text\" class=\"form-control\" placeholder=\"Search for...\" aria-label=\"Search\" aria-describedby=\"basic-addon2\">\r\n                  <div class=\"input-group-append\">\r\n                    <button class=\"btn btn-primary\" type=\"button\">\r\n                      <i class=\"fas fa-search\"></i>\r\n                    </button>\r\n                  </div>\r\n                </div>\r\n              </form>\r\n        \r\n              <!-- Navbar -->\r\n              <ul class=\"navbar-nav ml-auto ml-md-0\">\r\n      \r\n                  <!-- <li class=\"nav-item dropdown\" appDropdown>\r\n                      <a class=\"nav-link dropdown-toggle\"  id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                        Username\r\n                      </a>\r\n                      <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">\r\n                         <a class=\"dropdown-item\" >Profile 2</a>\r\n                         <a class=\"dropdown-item\" >Logout 2</a>\r\n                      </div>\r\n                    </li> -->\r\n                    <li class=\"nav-item\"  placement=\"bottom-right\" appDropdown>\r\n                        <a id=\"language-dropdown\" class=\"nav-link\" >{{currentLanguage}}</a>\r\n                        <div  class=\"dropdown-menu dropdown-menu-right \" aria-labelledby=\"language-dropdown\">\r\n                          <a class=\"dropdown-item\" *ngFor=\"let language of languages\" (click)=\"setLanguage(language)\">\r\n                            {{language}}\r\n                          </a>\r\n                        </div>\r\n                      </li>\r\n                <li class=\"nav-item dropdown no-arrow mx-1\" appDropdown>\r\n                  <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"alertsDropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                    <i class=\"fas fa-bell fa-fw\"></i>\r\n                    <span class=\"badge badge-danger\">9+</span>\r\n                  </a>\r\n                  <div  class=\"dropdown-menu dropdown-menu-right \" aria-labelledby=\"alertsDropdown\">\r\n                    <a class=\"dropdown-item\" href=\"#\"><span translate>About</span></a>\r\n                    <a class=\"dropdown-item\" href=\"#\">Another action</a>\r\n                    <div class=\"dropdown-divider\"></div>\r\n                    <a class=\"dropdown-item\" href=\"#\">Something else here</a>\r\n                  </div>\r\n                </li>\r\n                <li class=\"nav-item dropdown no-arrow mx-1\" appDropdown>\r\n                  <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"messagesDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                    <i class=\"fas fa-envelope fa-fw\"></i>\r\n                    <span class=\"badge badge-danger\">7</span>\r\n                  </a>\r\n                  <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"messagesDropdown\">\r\n                    <a class=\"dropdown-item\" href=\"#\">Action</a>\r\n                    <a class=\"dropdown-item\" href=\"#\">Another action</a>\r\n                    <div class=\"dropdown-divider\"></div>\r\n                    <a class=\"dropdown-item\" href=\"#\">Something else here</a>\r\n                  </div>\r\n                </li>\r\n                <li class=\"nav-item dropdown no-arrow\" appDropdown>\r\n                  <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"userDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                    <i class=\"fas fa-user-circle fa-fw\"></i>\r\n                  </a>\r\n                  <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"userDropdown\">\r\n                    <a class=\"dropdown-item\" href=\"#\">Settings</a>\r\n                    <a class=\"dropdown-item\" href=\"#\">Activity Log</a>\r\n                    <div class=\"dropdown-divider\"></div>\r\n                    <a class=\"dropdown-item\"  [routerLink]=\"['/login']\">Logout</a>\r\n                  </div>\r\n                </li>\r\n              </ul>\r\n        \r\n            </nav>\r\n          </div>  \r\n      <!-- <div id=\"wrapper\"> -->\r\n        \r\n    "
+
+/***/ }),
+
+/***/ "./src/app/header/header.component.ts":
+/*!********************************************!*\
+  !*** ./src/app/header/header.component.ts ***!
+  \********************************************/
+/*! exports provided: HeaderComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HeaderComponent", function() { return HeaderComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _services_i18n_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../_services/i18n.service */ "./src/app/_services/i18n.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var HeaderComponent = /** @class */ (function () {
+    function HeaderComponent(i18nService /*private _authenticationService: AuthenticationService*/) {
+        this.i18nService = i18nService; /*private _authenticationService: AuthenticationService*/
+        //this.user = _authenticationService.;
+    }
+    HeaderComponent.prototype.ngOnInit = function () {
+    };
+    HeaderComponent.prototype.setLanguage = function (language) {
+        this.i18nService.language = language;
+    };
+    Object.defineProperty(HeaderComponent.prototype, "currentLanguage", {
+        get: function () {
+            return this.i18nService.language;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(HeaderComponent.prototype, "languages", {
+        get: function () {
+            return this.i18nService.supportedLanguages;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    HeaderComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'header',
+            template: __webpack_require__(/*! ./header.component.html */ "./src/app/header/header.component.html"),
+        }),
+        __metadata("design:paramtypes", [_services_i18n_service__WEBPACK_IMPORTED_MODULE_1__["I18nService"] /*private _authenticationService: AuthenticationService*/])
+    ], HeaderComponent);
+    return HeaderComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/home/home.component.html":
 /*!******************************************!*\
   !*** ./src/app/home/home.component.html ***!
@@ -1292,7 +1369,7 @@ var routing = _angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"].forRo
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<body id=\"page-top\" [ngClass] = \"toggledClass?'sidebar-toggled':''\">\r\n <nav class=\"navbar navbar-expand navbar-dark bg-dark static-top\">\r\n  \r\n        <a class=\"navbar-brand mr-1\" href=\"index.html\">moveProtect</a>\r\n  \r\n        <button class=\"btn btn-link btn-sm text-white order-1 order-sm-0\" id=\"sidebarToggle\" (click) = \"toggledClass = !toggledClass\">\r\n          <i class=\"fas fa-bars\"></i>\r\n        </button>\r\n  \r\n        <!-- Navbar Search -->\r\n        <form class=\"d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0\">\r\n          <div class=\"input-group\">\r\n            <input type=\"text\" class=\"form-control\" placeholder=\"Search for...\" aria-label=\"Search\" aria-describedby=\"basic-addon2\">\r\n            <div class=\"input-group-append\">\r\n              <button class=\"btn btn-primary\" type=\"button\">\r\n                <i class=\"fas fa-search\"></i>\r\n              </button>\r\n            </div>\r\n          </div>\r\n        </form>\r\n  \r\n        <!-- Navbar -->\r\n        <ul class=\"navbar-nav ml-auto ml-md-0\">\r\n\r\n            <!-- <li class=\"nav-item dropdown\" appDropdown>\r\n                <a class=\"nav-link dropdown-toggle\"  id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                  Username\r\n                </a>\r\n                <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">\r\n                   <a class=\"dropdown-item\" >Profile 2</a>\r\n                   <a class=\"dropdown-item\" >Logout 2</a>\r\n                </div>\r\n              </li> -->\r\n              <li class=\"nav-item\"  placement=\"bottom-right\" appDropdown>\r\n                  <a id=\"language-dropdown\" class=\"nav-link\" >{{currentLanguage}}</a>\r\n                  <div  class=\"dropdown-menu dropdown-menu-right \" aria-labelledby=\"language-dropdown\">\r\n                    <a class=\"dropdown-item\" *ngFor=\"let language of languages\" (click)=\"setLanguage(language)\">\r\n                      {{language}}\r\n                    </a>\r\n                  </div>\r\n                </li>\r\n          <li class=\"nav-item dropdown no-arrow mx-1\" appDropdown>\r\n            <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"alertsDropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n              <i class=\"fas fa-bell fa-fw\"></i>\r\n              <span class=\"badge badge-danger\">9+</span>\r\n            </a>\r\n            <div  class=\"dropdown-menu dropdown-menu-right \" aria-labelledby=\"alertsDropdown\">\r\n              <a class=\"dropdown-item\" href=\"#\"><span translate>About</span></a>\r\n              <a class=\"dropdown-item\" href=\"#\">Another action</a>\r\n              <div class=\"dropdown-divider\"></div>\r\n              <a class=\"dropdown-item\" href=\"#\">Something else here</a>\r\n            </div>\r\n          </li>\r\n          <li class=\"nav-item dropdown no-arrow mx-1\" appDropdown>\r\n            <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"messagesDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n              <i class=\"fas fa-envelope fa-fw\"></i>\r\n              <span class=\"badge badge-danger\">7</span>\r\n            </a>\r\n            <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"messagesDropdown\">\r\n              <a class=\"dropdown-item\" href=\"#\">Action</a>\r\n              <a class=\"dropdown-item\" href=\"#\">Another action</a>\r\n              <div class=\"dropdown-divider\"></div>\r\n              <a class=\"dropdown-item\" href=\"#\">Something else here</a>\r\n            </div>\r\n          </li>\r\n          <li class=\"nav-item dropdown no-arrow\" appDropdown>\r\n            <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"userDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n              <i class=\"fas fa-user-circle fa-fw\"></i>\r\n            </a>\r\n            <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"userDropdown\">\r\n              <a class=\"dropdown-item\" href=\"#\">Settings</a>\r\n              <a class=\"dropdown-item\" href=\"#\">Activity Log</a>\r\n              <div class=\"dropdown-divider\"></div>\r\n              <a class=\"dropdown-item\"  [routerLink]=\"['/login']\">Logout</a>\r\n            </div>\r\n          </li>\r\n        </ul>\r\n  \r\n      </nav>\r\n\r\n      <div id=\"wrapper\">\r\n        \r\n              <!-- Sidebar -->\r\n              <ul class=\"sidebar navbar-nav\" [ngClass] = \"toggledClass?'toggled':''\">\r\n                <li class=\"nav-item active\">\r\n                  <a class=\"nav-link\" href=\"index.html\">\r\n                    <i class=\"fas fa-fw fa-tachometer-alt\"></i>\r\n                    <span>Dashboard</span>\r\n                  </a>\r\n                </li>\r\n                <li class=\"nav-item dropdown\">\r\n                  <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"pagesDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                    <i class=\"fas fa-fw fa-folder\"></i>\r\n                    <span>Pages</span>\r\n                  </a>\r\n                  <div class=\"dropdown-menu\" aria-labelledby=\"pagesDropdown\">\r\n                    <h6 class=\"dropdown-header\">Login Screens:</h6>\r\n                    <a class=\"dropdown-item\" href=\"login.html\">Login</a>\r\n                    <a class=\"dropdown-item\" href=\"register.html\">Register</a>\r\n                    <a class=\"dropdown-item\" href=\"forgot-password.html\">Forgot Password</a>\r\n                    <div class=\"dropdown-divider\"></div>\r\n                    <h6 class=\"dropdown-header\">Other Pages:</h6>\r\n                    <a class=\"dropdown-item\" href=\"404.html\">404 Page</a>\r\n                    <a class=\"dropdown-item\" href=\"blank.html\">Blank Page</a>\r\n                  </div>\r\n                </li>\r\n                <li class=\"nav-item\">\r\n                  <a class=\"nav-link\" href=\"charts.html\">\r\n                    <i class=\"fas fa-fw fa-chart-area\"></i>\r\n                    <span>Charts</span></a>\r\n                </li>\r\n                <li class=\"nav-item\">\r\n                  <a class=\"nav-link\" href=\"tables.html\">\r\n                    <i class=\"fas fa-fw fa-table\"></i>\r\n                    <span>Tables</span></a>\r\n                </li>\r\n              </ul>\r\n        \r\n              <div id=\"content-wrapper\">\r\n        \r\n                <div class=\"container-fluid\">\r\n        \r\n<h1>Hi {{currentUser.firstName}}!</h1>\r\n\r\n\r\n<div>\r\n   add iemei:\r\n   <input #box (keyup.enter)=\"addIemei(box.value)\">\r\n\r\n<button  (click)=\"addIemei(box.value)\">save</button>>\r\n\r\n    <ul>\r\n        <li *ngFor=\"let user of users\">{{user.firstName}} {{user.lastName}}</li>\r\n    </ul>\r\n</div>\r\n\r\n<agm-map  [zoom]=\"12\" [latitude]=\"lat\" [longitude]=\"lng\">\r\n  <agm-marker [latitude]=\"lat\" [longitude]=\"lng\"></agm-marker>\r\n</agm-map>\r\n</div>\r\n\r\n        </div>\r\n      </div>\r\n        \r\n</body>\r\n<style>\r\n    agm-map {\r\n    height: 600px;\r\n    width: 600px;\r\n}\r\n</style>\r\n\r\n\r\n\r\n\r\n\r\n\r\n<!-- <script src=\"https://unpkg.com/@reactivex/rxjs@6.1.0/dist/global/rxjs.umd.js\"></script>\r\n<script>\r\n    const { WebSocketSubject } = rxjs.webSocket;\r\n    const socket$ = new WebSocketSubject('ws://localhost:4000');\r\n    socket$.subscribe(\r\n        \r\n            (data) => console.log(data),\r\n            (err) => console.error(err),\r\n            () => console.warn('Completed!')\r\n        );\r\n    socket$.next({\r\n        event: 'events',\r\n        data: 'test',\r\n    });\r\n    console.log('here')\r\n</script> -->\r\n\r\n<!-- <h1>Hi {{currentUser.firstName}}!</h1>\r\n<p>You're logged in with Angular 6!!</p>\r\n<h3>All registered users:</h3>\r\n<ul>\r\n    <li *ngFor=\"let user of users\">\r\n        {{user.imei}} ({{user.firstName}} {{user.lastName}})\r\n        - <a (click)=\"deleteUser(user.id)\" class=\"text-danger\">Delete</a>\r\n    </li>\r\n</ul>\r\n<p><a [routerLink]=\"['/login']\">Logout</a></p> -->\r\n\r\n\r\n\r\n<!-- <script src=\"https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js\"></script>\r\n\r\n<h1>HELLLPPPPP</h1>\r\n\r\n<body>\r\n  <div id=\"map\"></div>\r\n  <script>\r\n    var map;\r\n    var marker;\r\n  \r\n    var pos = { lat: 32.086397, lng: 34.788485 }\r\n    let socket = io.connect('http://localhost:4000');\r\n    socket.on('news', function (data) {\r\n      console.log(data);\r\n      socket.emit('my other event', { my: 'data' });\r\n    });\r\n\r\n    socket.on('position', function (data) {\r\n      console.log(data);\r\n      var latlng = new google.maps.LatLng(data.lat, data.lng)//Object.values(data));\r\n      marker.setPosition(latlng);\r\n\r\n    });\r\n\r\n    socket.on('data', function (data) {\r\n      console.log(data)\r\n      try{\r\n      if(data.data.data.latitude){\r\n        var latlng = new google.maps.LatLng(data.data.data.latitude, data.data.data.longitude)//Object.values(data));\r\n      marker.setPosition(latlng);\r\n      map.setCenter(latlng);\r\n      }\r\n    }catch(err){}\r\n\r\n\r\n      if(_.get(data,'data.data.latitude_raw'))\r\n     alert('dattt in console');\r\n\r\n    });\r\n\r\n    function initMap() {\r\n\r\n      map = new google.maps.Map(document.getElementById('map'), {\r\n        center: { lat: 32.086397, lng: 34.788485 },\r\n        zoom: 17\r\n      });\r\n\r\n      marker = new google.maps.Marker({\r\n        position: pos,\r\n        map: map,\r\n        title: 'Hello World!'\r\n      });\r\n    }\r\n  </script>\r\n  <script src=\"https://raw.githubusercontent.com/lodash/lodash/4.17.10-npm/core.js\"></script>\r\n\r\n  \r\n</body>\r\n\r\n<style>\r\n  /* Always set the map height explicitly to define the size of the div\r\n   * element that contains the map. */\r\n\r\n  #map {\r\n    height: 100%;\r\n  }\r\n\r\n  /* Optional: Makes the sample page fill the window. */\r\n\r\n  html,\r\n  body {\r\n    height: 100%;\r\n    margin: 0;\r\n    padding: 0;\r\n  }\r\n</style> -->\r\n"
+module.exports = "\r\n<body id=\"page-top\" [ngClass] = \"toggledClass?'sidebar-toggled':''\">\r\n\r\n    <div class=\"container page\">\r\n        <div class=\"row\">\r\n        \r\n              <div id=\"content-wrapper\">\r\n        \r\n               \r\n        \r\n<h1>Hi {{currentUser.firstName}}!</h1>\r\n\r\n\r\n<div>\r\n   add iemei:\r\n   <input #box (keyup.enter)=\"addIemei(box.value)\">\r\n\r\n<button  (click)=\"addIemei(box.value)\">save</button>>\r\n\r\n    <ul>\r\n        <li *ngFor=\"let user of users\">{{user.firstName}} {{user.lastName}}</li>\r\n    </ul>\r\n</div>\r\n\r\n<agm-map  [zoom]=\"12\" [latitude]=\"lat\" [longitude]=\"lng\">\r\n  <agm-marker [latitude]=\"lat\" [longitude]=\"lng\"></agm-marker>\r\n</agm-map>\r\n\r\n</div>\r\n</div>\r\n</div>\r\n        \r\n</body>\r\n<style>\r\n    agm-map {\r\n    height: 600px;\r\n    width: 600px;\r\n}\r\n</style>\r\n\r\n\r\n\r\n\r\n\r\n\r\n<!-- <script src=\"https://unpkg.com/@reactivex/rxjs@6.1.0/dist/global/rxjs.umd.js\"></script>\r\n<script>\r\n    const { WebSocketSubject } = rxjs.webSocket;\r\n    const socket$ = new WebSocketSubject('ws://localhost:4000');\r\n    socket$.subscribe(\r\n        \r\n            (data) => console.log(data),\r\n            (err) => console.error(err),\r\n            () => console.warn('Completed!')\r\n        );\r\n    socket$.next({\r\n        event: 'events',\r\n        data: 'test',\r\n    });\r\n    console.log('here')\r\n</script> -->\r\n\r\n<!-- <h1>Hi {{currentUser.firstName}}!</h1>\r\n<p>You're logged in with Angular 6!!</p>\r\n<h3>All registered users:</h3>\r\n<ul>\r\n    <li *ngFor=\"let user of users\">\r\n        {{user.imei}} ({{user.firstName}} {{user.lastName}})\r\n        - <a (click)=\"deleteUser(user.id)\" class=\"text-danger\">Delete</a>\r\n    </li>\r\n</ul>\r\n<p><a [routerLink]=\"['/login']\">Logout</a></p> -->\r\n\r\n\r\n\r\n<!-- <script src=\"https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js\"></script>\r\n\r\n<h1>HELLLPPPPP</h1>\r\n\r\n<body>\r\n  <div id=\"map\"></div>\r\n  <script>\r\n    var map;\r\n    var marker;\r\n  \r\n    var pos = { lat: 32.086397, lng: 34.788485 }\r\n    let socket = io.connect('http://localhost:4000');\r\n    socket.on('news', function (data) {\r\n      console.log(data);\r\n      socket.emit('my other event', { my: 'data' });\r\n    });\r\n\r\n    socket.on('position', function (data) {\r\n      console.log(data);\r\n      var latlng = new google.maps.LatLng(data.lat, data.lng)//Object.values(data));\r\n      marker.setPosition(latlng);\r\n\r\n    });\r\n\r\n    socket.on('data', function (data) {\r\n      console.log(data)\r\n      try{\r\n      if(data.data.data.latitude){\r\n        var latlng = new google.maps.LatLng(data.data.data.latitude, data.data.data.longitude)//Object.values(data));\r\n      marker.setPosition(latlng);\r\n      map.setCenter(latlng);\r\n      }\r\n    }catch(err){}\r\n\r\n\r\n      if(_.get(data,'data.data.latitude_raw'))\r\n     alert('dattt in console');\r\n\r\n    });\r\n\r\n    function initMap() {\r\n\r\n      map = new google.maps.Map(document.getElementById('map'), {\r\n        center: { lat: 32.086397, lng: 34.788485 },\r\n        zoom: 17\r\n      });\r\n\r\n      marker = new google.maps.Marker({\r\n        position: pos,\r\n        map: map,\r\n        title: 'Hello World!'\r\n      });\r\n    }\r\n  </script>\r\n  <script src=\"https://raw.githubusercontent.com/lodash/lodash/4.17.10-npm/core.js\"></script>\r\n\r\n  \r\n</body>\r\n\r\n<style>\r\n  /* Always set the map height explicitly to define the size of the div\r\n   * element that contains the map. */\r\n\r\n  #map {\r\n    height: 100%;\r\n  }\r\n\r\n  /* Optional: Makes the sample page fill the window. */\r\n\r\n  html,\r\n  body {\r\n    height: 100%;\r\n    margin: 0;\r\n    padding: 0;\r\n  }\r\n</style> -->\r\n"
 
 /***/ }),
 
@@ -1310,9 +1387,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 /* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../_services */ "./src/app/_services/index.ts");
-/* harmony import */ var _services_i18n_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../_services/i18n.service */ "./src/app/_services/i18n.service.ts");
-/* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! socket.io-client */ "./node_modules/socket.io-client/lib/index.js");
-/* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(socket_io_client__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! socket.io-client */ "./node_modules/socket.io-client/lib/index.js");
+/* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(socket_io_client__WEBPACK_IMPORTED_MODULE_3__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1322,7 +1398,6 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-
 
 
 
@@ -1338,11 +1413,10 @@ var Message = /** @class */ (function () {
 }());
 
 var HomeComponent = /** @class */ (function () {
-    function HomeComponent(userService, i18nService
+    function HomeComponent(userService
     // private dropdownDirective:DropdownDirective
     /*private chatService: ChatService*/ ) {
         this.userService = userService;
-        this.i18nService = i18nService;
         this.title = 'My first AGM project';
         this.lat = 43.678418;
         this.lng = -79.809007;
@@ -1353,7 +1427,7 @@ var HomeComponent = /** @class */ (function () {
         if (user) {
             user = JSON.parse(user);
             if ('token' in user)
-                this.socket = socket_io_client__WEBPACK_IMPORTED_MODULE_4__["connect"]("http://" + window.location.hostname + ":4000?token=" + user.token + "&iemi=" + user.imei);
+                this.socket = socket_io_client__WEBPACK_IMPORTED_MODULE_3__["connect"]("http://" + window.location.hostname + ":4000?token=" + user.token + "&iemi=" + user.imei);
             //  config = { url: 'http://' + window.location.hostname + ':4000', options: { query: "token=" + user.token + '&iemi=' + user.imei } };
         }
         // chatService.getMessage().subscribe(msg => {
@@ -1397,28 +1471,11 @@ var HomeComponent = /** @class */ (function () {
             _this.users = users;
         });
     };
-    HomeComponent.prototype.setLanguage = function (language) {
-        this.i18nService.language = language;
-    };
-    Object.defineProperty(HomeComponent.prototype, "currentLanguage", {
-        get: function () {
-            return this.i18nService.language;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(HomeComponent.prototype, "languages", {
-        get: function () {
-            return this.i18nService.supportedLanguages;
-        },
-        enumerable: true,
-        configurable: true
-    });
     HomeComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             template: __webpack_require__(/*! ./home.component.html */ "./src/app/home/home.component.html"),
         }),
-        __metadata("design:paramtypes", [_services__WEBPACK_IMPORTED_MODULE_2__["UserService"], _services_i18n_service__WEBPACK_IMPORTED_MODULE_3__["I18nService"]
+        __metadata("design:paramtypes", [_services__WEBPACK_IMPORTED_MODULE_2__["UserService"]
             // private dropdownDirective:DropdownDirective
             /*private chatService: ChatService*/ ])
     ], HomeComponent);
@@ -1675,7 +1732,7 @@ var ProductEditComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\">\r\n    \r\n      <div class=\"header\">\r\n        <h2 class=\"title\">Products</h2>\r\n      </div>\r\n     <div class=\"content\">\r\n    \r\n        <form #f=\"ngForm\">\r\n\r\n          <!-- <div class=\"form-group\">\r\n            <label>From:</label>\r\n            <input [(ngModel)]=\"filter.from\" name=\"from\" class=\"form-control\">\r\n          </div>\r\n\r\n          <div class=\"form-group\">\r\n            <label>To:</label>\r\n            <input [(ngModel)]=\"filter.to\" name=\"to\" class=\"form-control\">\r\n          </div>\r\n\r\n          <div class=\"form-group\">\r\n            <button (click)=\"search()\" [disabled]=\"!f?.valid\" class=\"btn btn-default\">\r\n              Search\r\n            </button> -->\r\n            <a [routerLink]=\"['../product','new']\" class=\"btn btn-default\">\r\n                New\r\n            </a>\r\n  \r\n          <!-- </div> -->\r\n          \r\n        </form>\r\n    \r\n      </div> \r\n\r\n\r\n    </div>\r\n    \r\n    <div class=\"card\" *ngIf=\"productList.length > 0\">\r\n    \r\n      <table class=\"table table-contensed\" >\r\n        <thead>\r\n        <tr>            \r\n            <th>Name</th>            \r\n            <th>Details</th>            \r\n            <th>imei</th>            \r\n            <th>Created</th>\r\n        </tr>\r\n        </thead>\r\n        <tr *ngFor=\"let item of productList\" [class.active]=\"item === selectedProduct\">\r\n            <td>{{item.name}}</td>\r\n            <td>{{item.details}}</td>\r\n            <td>{{item.imei}}</td>\r\n            <td>{{item.created | date}}</td>\r\n            <td>\r\n                \r\n                <a [routerLink]=\"['../product', item.id ]\">Details</a> |           \r\n                <a (click)=\"select(item)\">Select</a>\r\n            </td>\r\n        </tr>\r\n      </table>\r\n    \r\n    </div>\r\n"
+module.exports = "<div class=\"card\">\r\n    \r\n      <div class=\"header\">\r\n        <h2 class=\"title\">Products</h2>\r\n      </div>\r\n     <div class=\"content\">\r\n    \r\n        <form #f=\"ngForm\">\r\n\r\n          <!-- <div class=\"form-group\">\r\n            <label>From:</label>\r\n            <input [(ngModel)]=\"filter.from\" name=\"from\" class=\"form-control\">\r\n          </div>\r\n\r\n          <div class=\"form-group\">\r\n            <label>To:</label>\r\n            <input [(ngModel)]=\"filter.to\" name=\"to\" class=\"form-control\">\r\n          </div>\r\n\r\n          <div class=\"form-group\">\r\n            <button (click)=\"search()\" [disabled]=\"!f?.valid\" class=\"btn btn-default\">\r\n              Search\r\n            </button> -->\r\n            <a [routerLink]=\"['../product','new']\" class=\"btn btn-default\">\r\n                New\r\n            </a>\r\n  \r\n          <!-- </div> -->\r\n          \r\n        </form>\r\n    \r\n      </div> \r\n\r\n\r\n    </div>\r\n    \r\n    <div class=\"card\" *ngIf=\"products.length > 0\">\r\n    \r\n      <table class=\"table table-contensed\" >\r\n        <thead>\r\n        <tr>            \r\n            <th>Name</th>            \r\n            <th>Details</th>            \r\n            <th>imei</th>            \r\n            <th>Created</th>\r\n        </tr>\r\n        </thead>\r\n        <tr *ngFor=\"let item of products\">\r\n            <td>{{item.name}}</td>\r\n            <td>{{item.details}}</td>\r\n            <td>{{item.imei}}</td>\r\n            <td>{{item.created | date}}</td>\r\n            <td>\r\n                \r\n                <a [routerLink]=\"['../product', item.id ]\">Details</a> |           \r\n                <a (click)=\"select(item)\">Select</a>\r\n            </td>\r\n        </tr>\r\n      </table>\r\n    \r\n    </div>\r\n"
 
 /***/ }),
 
@@ -1716,11 +1773,14 @@ var ProductListComponent = /** @class */ (function () {
     }
     ProductListComponent.prototype.productList = function () {
         var _this = this;
-        this.productService.getAll(this.user._id).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["first"])()).subscribe(function (products) {
-            _this.products = products;
-        }, function (err) {
+        try {
+            this.productService.getAll(this.user._id).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["first"])()).subscribe(function (products) {
+                _this.products = products;
+            });
+        }
+        catch (err) {
             console.log(err);
-        });
+        }
     };
     ProductListComponent.prototype.ngOnInit = function () {
     };
@@ -1936,6 +1996,58 @@ var RegisterComponent = /** @class */ (function () {
             _services__WEBPACK_IMPORTED_MODULE_4__["AlertService"]])
     ], RegisterComponent);
     return RegisterComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/sideBar/sideBar.component.html":
+/*!************************************************!*\
+  !*** ./src/app/sideBar/sideBar.component.html ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\r\n    \r\n           \r\n      <!-- <div id=\"wrapper\"> -->\r\n        \r\n                <!-- Sidebar -->\r\n                \r\n            \r\n                <ul class=\"sidebar navbar-nav\" [ngClass] = \"toggledClass?'toggled':''\">\r\n                    <button class=\"btn btn-link btn-sm text-white order-1 order-sm-0\" id=\"sidebarToggle\" (click) = \"toggledClass = !toggledClass\">\r\n                        <i class=\"fas fa-bars\"></i>\r\n                      </button>\r\n                  <li class=\"nav-item active\">\r\n                    <a class=\"nav-link\"[routerLink]=\"['/product']\">\r\n                      <i class=\"fas fa-fw fa-tachometer-alt\"></i>\r\n                      <span>Products</span>\r\n                    </a>\r\n                  </li>\r\n                  <li class=\"nav-item dropdown\">\r\n                    <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"pagesDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                      <i class=\"fas fa-fw fa-folder\"></i>\r\n                      <span>Pages</span>\r\n                    </a>\r\n                    <div class=\"dropdown-menu\" aria-labelledby=\"pagesDropdown\">\r\n                      <h6 class=\"dropdown-header\">Login Screens:</h6>\r\n                      <a class=\"dropdown-item\" href=\"login.html\">Login</a>\r\n                      <a class=\"dropdown-item\" href=\"register.html\">Register</a>\r\n                      <a class=\"dropdown-item\" href=\"forgot-password.html\">Forgot Password</a>\r\n                      <div class=\"dropdown-divider\"></div>\r\n                      <h6 class=\"dropdown-header\">Other Pages:</h6>\r\n                      <a class=\"dropdown-item\" href=\"404.html\">404 Page</a>\r\n                      <a class=\"dropdown-item\" href=\"blank.html\">Blank Page</a>\r\n                    </div>\r\n                  </li>\r\n                  <li class=\"nav-item\">\r\n                    <a class=\"nav-link\" href=\"charts.html\">\r\n                      <i class=\"fas fa-fw fa-chart-area\"></i>\r\n                      <span>Charts</span></a>\r\n                  </li>\r\n                  <li class=\"nav-item\">\r\n                    <a class=\"nav-link\" href=\"tables.html\">\r\n                      <i class=\"fas fa-fw fa-table\"></i>\r\n                      <span>Tables</span></a>\r\n                  </li>\r\n                </ul>\r\n          \r\n"
+
+/***/ }),
+
+/***/ "./src/app/sideBar/sideBar.component.ts":
+/*!**********************************************!*\
+  !*** ./src/app/sideBar/sideBar.component.ts ***!
+  \**********************************************/
+/*! exports provided: SideComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SideComponent", function() { return SideComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var SideComponent = /** @class */ (function () {
+    function SideComponent() {
+        //this.user = _authenticationService.;
+    }
+    SideComponent.prototype.ngOnInit = function () {
+    };
+    SideComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'side',
+            template: __webpack_require__(/*! ./sideBar.component.html */ "./src/app/sideBar/sideBar.component.html"),
+        }),
+        __metadata("design:paramtypes", [])
+    ], SideComponent);
+    return SideComponent;
 }());
 
 
