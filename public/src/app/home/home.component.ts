@@ -3,16 +3,17 @@ import { first } from 'rxjs/operators';
 
 import { User } from '../_models';
 import { UserService } from '../_services';
+import * as _ from 'lodash';
 
 
 
 import * as io from 'socket.io-client';
 
-export class Message {
+export class Marker {
     constructor(
-        public sender: string,
-        public content: string,
-        public isBroadcast = false,
+        public lat: number,
+        public long: number,
+        public imei: string,
     ) { }
 }
 
@@ -29,11 +30,19 @@ export class HomeComponent implements OnInit {
 
     currentUser: User;
     users: User[] = [];
+    markers: Marker[] = [];
     socket: io.SocketIOClient.Socket;
 
     constructor(private userService: UserService
        // private dropdownDirective:DropdownDirective
          /*private chatService: ChatService*/) {
+        //  this.markers.push(new Marker(this.lat+0.8,this.lng,'hghj'))
+        //  this.markers.push( new Marker(this.lat+0.1,this.lng,'333'))
+        //  setTimeout(() => {
+        //       this.testSocket({data:{imei:'1234',latitude:this.lat+0.3,longitude:this.lng}})
+        //  }, 5000);
+
+
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
         let user = <any>localStorage.getItem('currentUser');
@@ -64,21 +73,40 @@ export class HomeComponent implements OnInit {
 
         this.socket.on('data', (msg) => {
             console.log("Response from websocket: ", msg);
-            if (msg.data.latitude) {
-                this.lat = msg.data.latitude;
-                this.lng = msg.data.longitude;
+            if (msg.data.imei && msg.data.latitude) {// update the coordinate or add marker
+                let index = this.markers.findIndex(el => el.imei === msg.data.imei);
+                if (index >= 0)
+                    this.markers[index] = new Marker(msg.data.latitude, msg.data.longitude, msg.data.imei);
+                else
+                    this.markers.push(new Marker(msg.data.latitude, msg.data.longitude, msg.data.imei));
             }
+            // if (msg.data.latitude) {
+            //     this.lat = msg.data.latitude;
+            //     this.lng = msg.data.longitude;
+            // }
         })
     }
+    testSocket(msg) {
+        if (msg.data.imei && msg.data.latitude) {// update the coordinate or add marker
+            let index = this.markers.findIndex(el => el.imei === msg.data.imei);
+            if (index >= 0)
+                this.markers[index] = new Marker(msg.data.latitude, msg.data.longitude, msg.data.imei);
+            else
+                this.markers.push(new Marker(msg.data.latitude, msg.data.longitude, msg.data.imei));
+        }
+    }
 
+    markerClick(infoWin, marker) {
+        alert('clicked')
+    }
     deleteUser(id: number) {
         this.userService.delete(id).pipe(first()).subscribe(() => {
             this.loadAllUsers()
         });
     }
 
-    addIemei(imei:string){
-        this.userService.addImei(imei,this.currentUser._id).pipe(first()).subscribe(users => {
+    addIemei(imei: string) {
+        this.userService.addImei(imei, this.currentUser._id).pipe(first()).subscribe(users => {
             //this.users = users;
             alert('imei saved!');
         });
@@ -90,5 +118,5 @@ export class HomeComponent implements OnInit {
         });
     }
 
-   
+
 }

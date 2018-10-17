@@ -27,10 +27,24 @@
       <agm-map [style.height.px]="map.offsetHeight" [latitude]="lat" [longitude]="lng"></agm-map>
     </div>
   </div> -->
+  <div class="" fxLayout="column" style="margin:0px;padding:0px">
   <agm-map  [zoom]="12" [latitude]="lat" [longitude]="lng">
-  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-</agm-map>  
+  <!-- <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker> -->
+  <!-- [iconUrl]="customIcon" -->
+  <agm-marker 
+  *ngFor="let marker of markers; let i = index"
+  (markerClick)="markerClick(infoWindow, marker)"
+  
+  [latitude]="marker.lat"
+  [longitude]="marker.long">
 
+<agm-info-window #infoWindow>
+  <strong>info window</strong>
+</agm-info-window>
+
+</agm-marker>
+</agm-map>  
+</div>
  <!-- </div>
 </div>
 </div> 

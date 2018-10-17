@@ -12,7 +12,7 @@ export class ProductService {
     }
 
     getAll(userId) {
-        return this.http.post<Product[]>(`${environment.apiUrl}/products`,{});
+        return this.http.post<Product[]>(`${environment.apiUrl}/products`,{userId});
     }
 
     getById(id: number) {

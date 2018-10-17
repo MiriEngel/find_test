@@ -1,4 +1,0 @@
-﻿{
-    "connectionString": "mongodb://localhost/move1",
-    "secret": "moveproject"
-}

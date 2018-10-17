@@ -16,14 +16,14 @@ export class ProductListComponent {
     products: Product[];
 
     productList() {
-        try{
-        this.productService.getAll(this.user._id).pipe(first()).subscribe(products => {
-            this.products = products;
-        })
-    }catch(err){
-        console.log(err);
-    }
-       
+        try {
+            this.productService.getAll(this.user._id).pipe(first()).subscribe(products => {
+                this.products = products;
+            })
+        } catch (err) {
+            console.log(err);
+        }
+
     }
 
     constructor(private productService: ProductService) {
